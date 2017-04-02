@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Bonbonniere.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bonbonniere.Website.Controllers
 {
@@ -12,12 +13,16 @@ namespace Bonbonniere.Website.Controllers
             _registerRepository = registerRepository;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View("Register", new Register());
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(Register model)
         {
             if (ModelState.IsValid)
