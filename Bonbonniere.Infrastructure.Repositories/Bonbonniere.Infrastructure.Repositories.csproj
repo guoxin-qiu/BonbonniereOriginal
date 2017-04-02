@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Copyright>Copyright © QYQ 2017</Copyright>
+    <Company>QYQ</Company>
+    <Authors>QYQ</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonbonniere.Core\Bonbonniere.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Authors>QYQ</Authors>
+    <Company>QYQ</Company>
+    <Copyright>Copyright © QYQ 2017</Copyright>
+  </PropertyGroup>
+
+</Project>
