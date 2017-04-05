@@ -8,9 +8,10 @@ using Bonbonniere.Infrastructure.Repositories;
 namespace Bonbonniere.Infrastructure.Repositories.Migrations
 {
     [DbContext(typeof(BonbonniereContext))]
-    partial class BonbonniereContextModelSnapshot : ModelSnapshot
+    [Migration("20170405033545_ModifyUser")]
+    partial class ModifyUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

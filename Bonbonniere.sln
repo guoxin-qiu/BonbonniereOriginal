@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Core", "Bonbonn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Infrastructure.Repositories", "Bonbonniere.Infrastructure.Repositories\Bonbonniere.Infrastructure.Repositories.csproj", "{18AB10FF-F94C-4426-8123-95AFC9EAAD77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Infrastructure", "Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj", "{B3447992-1BB0-44FF-9708-002B36F104AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{18AB10FF-F94C-4426-8123-95AFC9EAAD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18AB10FF-F94C-4426-8123-95AFC9EAAD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18AB10FF-F94C-4426-8123-95AFC9EAAD77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3447992-1BB0-44FF-9708-002B36F104AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3447992-1BB0-44FF-9708-002B36F104AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3447992-1BB0-44FF-9708-002B36F104AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3447992-1BB0-44FF-9708-002B36F104AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{73A1DA78-838E-4062-A5E7-2B52A77E707F} = {CCB97BFE-7377-414C-972A-6329192500BD}
 		{D5A1A483-661F-451C-B391-BD5F5F255D51} = {CCB97BFE-7377-414C-972A-6329192500BD}
 		{18AB10FF-F94C-4426-8123-95AFC9EAAD77} = {CCB97BFE-7377-414C-972A-6329192500BD}
+		{B3447992-1BB0-44FF-9708-002B36F104AD} = {CCB97BFE-7377-414C-972A-6329192500BD}
 	EndGlobalSection
 EndGlobal

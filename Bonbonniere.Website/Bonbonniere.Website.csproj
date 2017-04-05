@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bonbonniere.Core\Bonbonniere.Core.csproj" />
     <ProjectReference Include="..\Bonbonniere.Infrastructure.Repositories\Bonbonniere.Infrastructure.Repositories.csproj" />
+    <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

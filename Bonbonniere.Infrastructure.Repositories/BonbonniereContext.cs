@@ -1,5 +1,7 @@
 ﻿using Bonbonniere.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Diagnostics;
 
 namespace Bonbonniere.Infrastructure.Repositories
 {
@@ -8,13 +10,13 @@ namespace Bonbonniere.Infrastructure.Repositories
     {
         public BonbonniereContext()
         {
-
+            Debug.WriteLine(DateTime.Now + " ~~ " + Guid.NewGuid());
         }
 
         public BonbonniereContext(DbContextOptions<BonbonniereContext> options) 
             : base(options)
         {
-
+            Debug.WriteLine(DateTime.Now + " ~~ " + Guid.NewGuid());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,7 +29,7 @@ namespace Bonbonniere.Infrastructure.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
+            
         }
     }
 }

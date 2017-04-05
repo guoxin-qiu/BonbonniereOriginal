@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bonbonniere.Core.Models
+namespace Bonbonniere.Website.ViewModels
 {
-    public class Register
+    public class RegisterViewModel
     {
-        public int Id { get; set; }
         [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Email is required.")]

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Bonbonniere.Core.Models;
 using Bonbonniere.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Bonbonniere.Infrastructure.Domain;
+using Bonbonniere.Infrastructure.Repositories.Implementations;
 
 namespace Bonbonniere.Website
 {
@@ -30,7 +31,10 @@ namespace Bonbonniere.Website
             services.AddDbContext<BonbonniereContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-            services.AddScoped<IRegisterRepository, RegisterRepository>();
+            
+            services.AddScoped<BonbonniereContext, BonbonniereContext>();
+            services.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
