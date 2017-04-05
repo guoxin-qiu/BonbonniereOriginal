@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Bonbonniere.Core.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace Bonbonniere.Website.Controllers
 {
     public class AccountController : Controller
     {
-        private IRegisterRepository _registerRepository;
+        private readonly IRegisterRepository _registerRepository;
 
         public AccountController(IRegisterRepository registerRepository)
         {
@@ -17,7 +18,7 @@ namespace Bonbonniere.Website.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
-            return View("Register", new Register());
+            return View();
         }
 
         [HttpPost]
@@ -30,7 +31,7 @@ namespace Bonbonniere.Website.Controllers
                 _registerRepository.Save(model);
                 return RedirectToAction("Registration", new { id = model.Id, isNew = true });
             }
-            return View("Register", model);
+            return View(model);
         }
 
         public IActionResult Registration(int id, bool isNew = false)
