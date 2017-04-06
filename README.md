@@ -8,3 +8,4 @@ TDD BDD ATDD NetCore
 - DI: [https://andrewlock.net/using-dependency-injection-in-a-net-core-console-application/](https://andrewlock.net/using-dependency-injection-in-a-net-core-console-application/)
 - DI: [https://msdn.microsoft.com/en-us/magazine/mt703433.aspx](https://msdn.microsoft.com/en-us/magazine/mt703433.aspx)
 - DI: [https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection)
+- Asp.Net Core Tutorials: [https://docs.microsoft.com/en-us/aspnet/core/](https://docs.microsoft.com/en-us/aspnet/core/)
