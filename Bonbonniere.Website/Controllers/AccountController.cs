@@ -3,16 +3,22 @@ using Bonbonniere.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Website.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace Bonbonniere.Website.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ILogger _logger;
         private readonly IRepository<User> _userRepository;
         private readonly IUnitOfWork _uow;
 
-        public AccountController(IRepository<User> userRepository,IUnitOfWork uow)
+        public AccountController(
+            ILogger<AccountController> logger,
+            IRepository<User> userRepository,
+            IUnitOfWork uow)
         {
+            _logger = logger;
             _userRepository = userRepository;
             _uow = uow;
         }
@@ -21,6 +27,15 @@ namespace Bonbonniere.Website.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
+            #region only a logging test
+            _logger.LogDebug("LogDebug: Register!");
+            _logger.LogInformation("LogInformation: Register!");
+            _logger.LogTrace("LogTrace: Register!");
+            _logger.LogWarning("LogWarning: Register!");
+            _logger.LogError("LogError: Register!");
+            _logger.LogCritical("LogCritical: Register!");
+            #endregion only a logging test
+
             return View();
         }
 

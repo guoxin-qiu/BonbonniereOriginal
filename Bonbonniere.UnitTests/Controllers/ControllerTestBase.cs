@@ -2,9 +2,11 @@
 using Bonbonniere.Data.Repositories;
 using Bonbonniere.Infrastructure;
 using Bonbonniere.Infrastructure.Domain;
+using Bonbonniere.UnitTests.Tools;
 using Bonbonniere.Website.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace Bonbonniere.UnitTests.Controllers
@@ -23,6 +25,7 @@ namespace Bonbonniere.UnitTests.Controllers
             var _service = new ServiceCollection();
             _service.Configure<Settings>(configuration.GetSection("Settings"));
             _service.AddOptions();
+            _service.AddScoped(typeof(ILogger<>), typeof(NullLogger<>));
             _service.AddScoped<IDataProvider, DataProviderFactory>();
             _service.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             _service.AddScoped<IUnitOfWork, UnitOfWork>();
