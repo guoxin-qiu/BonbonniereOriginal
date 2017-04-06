@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Bonbonniere.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 using Bonbonniere.Infrastructure.Domain;
-using Bonbonniere.Infrastructure.Repositories.Implementations;
+using Bonbonniere.Data.Repositories;
+using Bonbonniere.Data.Infrastructure;
+using Bonbonniere.Infrastructure;
+using Bonbonniere.Data.Providers;
+using Bonbonniere.Data;
 
 namespace Bonbonniere.Website
 {
@@ -28,17 +30,16 @@ namespace Bonbonniere.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<BonbonniereContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-            
-            services.AddScoped<BonbonniereContext, BonbonniereContext>();
-            services.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
+
+            services.Configure<Settings>(Configuration.GetSection("Settings"));
+            services.AddScoped<IDataProvider, DataProviderFactory>();
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, BonbonniereContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IDataProvider dataProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -62,7 +63,7 @@ namespace Bonbonniere.Website
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            DbInitializer.Initialize(context);
+            BonbonniereContextInitializer.Initialize(dataProvider);
         }
     }
 }

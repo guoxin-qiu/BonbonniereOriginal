@@ -1,9 +1,11 @@
 ﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Infrastructure.Repositories;
-using Bonbonniere.Infrastructure.Repositories.Implementations;
+using Bonbonniere.Data.Infrastructure;
+using Bonbonniere.Data.Repositories;
+using Bonbonniere.Infrastructure;
 using Bonbonniere.Website.Controllers;
 using Bonbonniere.Website.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace Bonbonniere.UnitTests.Controllers
@@ -14,10 +16,11 @@ namespace Bonbonniere.UnitTests.Controllers
 
         public AccountControllerTests()
         {
-            var dbContext = new BonbonniereContext();
+            IOptions<Settings> settings = Options.Create(new Settings { DefaultConnection = "Server=(localdb)\\ProjectsV13;Database=Bonbonniere;Trusted_Connection=True;",DataProvider= DataProviderType.InMemory });
+            IDataProvider _dataProvider = new DataProviderFactory(settings);
             _controller = new AccountController(
-                new RepositoryBase<User>(dbContext), 
-                new UnitOfWork(dbContext));
+                new BaseRepository<User>(_dataProvider),
+                new UnitOfWork(_dataProvider));
         }
 
         [Fact]

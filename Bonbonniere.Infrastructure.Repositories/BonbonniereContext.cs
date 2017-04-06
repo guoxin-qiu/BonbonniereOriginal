@@ -10,18 +10,29 @@ namespace Bonbonniere.Infrastructure.Repositories
     {
         public BonbonniereContext()
         {
-            Debug.WriteLine(DateTime.Now + " ~~ " + Guid.NewGuid());
+            var options = new DbContextOptionsBuilder<BonbonniereContext>()
+                .UseInMemoryDatabase(databaseName: "BonbonniereInMemory")
+                .Options;
         }
 
         public BonbonniereContext(DbContextOptions<BonbonniereContext> options) 
             : base(options)
         {
-            Debug.WriteLine(DateTime.Now + " ~~ " + Guid.NewGuid());
+            
+        }
+
+        public static BonbonniereContext GetInMemoryContext()
+        {
+            var options = new DbContextOptionsBuilder<BonbonniereContext>()
+                .UseInMemoryDatabase(databaseName: "BonbonniereInMemory")
+                .Options;
+
+            return new BonbonniereContext(options);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=Bonbonniere;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=Bonbonniere;Trusted_Connection=True;");
         }
 
         public DbSet<User> Users { get; set; }
