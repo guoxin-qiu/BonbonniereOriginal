@@ -15,5 +15,6 @@ namespace Bonbonniere.Data.Infrastructure
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<BrainstormSession> BrainStormSessions { get; set; }
     }
 }

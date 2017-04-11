@@ -9,7 +9,7 @@ namespace Bonbonniere.Data.Repositories
     {
         private IDataProvider _dataProvider;
         private BonbonniereContext DbContext => _dataProvider.DbContext;
-        private DbSet<TEntity> Table => DbContext.Set<TEntity>();
+        protected DbSet<TEntity> Table => DbContext.Set<TEntity>();
 
         public BaseRepository(IDataProvider dataProvider)
         {

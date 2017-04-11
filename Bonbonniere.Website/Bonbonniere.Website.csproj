@@ -27,5 +27,8 @@
     <ProjectReference Include="..\Bonbonniere.Data\Bonbonniere.Data.csproj" />
     <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
 
 </Project>
