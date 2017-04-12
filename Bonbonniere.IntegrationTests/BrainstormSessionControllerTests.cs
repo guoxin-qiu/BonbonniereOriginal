@@ -5,16 +5,19 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Bonbonniere.IntegrationTests
 {
     public class BrainstormSessionControllerTests: IClassFixture<TestFixture<Startup>>
     {
         private readonly HttpClient _client;
+        private ITestOutputHelper _output;
 
-        public BrainstormSessionControllerTests(TestFixture<Startup> fixture)
+        public BrainstormSessionControllerTests(TestFixture<Startup> fixture, ITestOutputHelper output)
         {
             _client = fixture.Client;
+            _output = output;
         }
 
         [Fact]
@@ -27,6 +30,7 @@ namespace Bonbonniere.IntegrationTests
             var response = await _client.GetAsync("/BrainstormSession/Index");
 
             //Assert
+            _output.WriteLine("Return ViewResult is not correct.");
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             Assert.True(responseString.Contains(testSession.Name));
@@ -59,7 +63,7 @@ namespace Bonbonniere.IntegrationTests
 
             // Arrange & Act
             var response = await _client.GetAsync("/BrainstormSession/Details/1");
-
+            _output.WriteLine("Return ViewResult is not correct.");
             // Assert
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
