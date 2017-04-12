@@ -7,8 +7,11 @@ using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Data.Repositories;
 using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Infrastructure;
-using Bonbonniere.Data.Providers;
-using Bonbonniere.Data;
+using Bonbonniere.Core.Interfaces;
+using System.Linq;
+using Bonbonniere.Core.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Bonbonniere.Website
 {
@@ -35,6 +38,7 @@ namespace Bonbonniere.Website
             services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddScoped<IDataProvider, DataProviderFactory>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IBrainstormSessionRepository, BrainstormSessionRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
@@ -44,10 +48,14 @@ namespace Bonbonniere.Website
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+
+                var brainstormRepo = app.ApplicationServices.GetService<IBrainstormSessionRepository>();
+                InitializeDatabaseAsync(brainstormRepo).Wait();
             }
             else
             {
@@ -64,6 +72,34 @@ namespace Bonbonniere.Website
             });
 
             BonbonniereContextInitializer.Initialize(dataProvider);
+        }
+
+
+        public async Task InitializeDatabaseAsync(IBrainstormSessionRepository repo)
+        {
+            var sessionList = await repo.ListAsync();
+            if (!sessionList.Any())
+            {
+                await repo.AddAsync(GetTestSession());
+            }
+        }
+
+        public static BrainstormSession GetTestSession()
+        {
+            var session = new BrainstormSession
+            {
+                Name = "Test Session 1",
+                DateCreated = new DateTime(2017, 4, 12)
+            };
+            var idea = new Idea
+            {
+                DateCreated = new DateTime(2017, 4, 12),
+                Description = "Totally awesome idea",
+                Name = "Awesome idea"
+            };
+
+            session.AddIdea(idea);
+            return session;
         }
     }
 }

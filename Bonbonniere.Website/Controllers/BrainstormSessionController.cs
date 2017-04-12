@@ -26,8 +26,10 @@ namespace Bonbonniere.Website.Controllers
                 DateCreated = session.DateCreated,
                 Name = session.Name,
                 IdeaCount = session.Ideas.Count
-            });
+            }).ToList();
 
+            //return Json(model);
+            //return Content("Hello World");
             return View(model);
         }
 

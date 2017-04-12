@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Data", "Bonbonniere.Data\Bonbonniere.Data.csproj", "{C6418A65-411E-42B6-BCFC-4F6E8E005058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.IntegrationTests", "Bonbonniere.IntegrationTests\Bonbonniere.IntegrationTests.csproj", "{60173905-AEC7-492C-844A-E066E2825EF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{C6418A65-411E-42B6-BCFC-4F6E8E005058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6418A65-411E-42B6-BCFC-4F6E8E005058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6418A65-411E-42B6-BCFC-4F6E8E005058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60173905-AEC7-492C-844A-E066E2825EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60173905-AEC7-492C-844A-E066E2825EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60173905-AEC7-492C-844A-E066E2825EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60173905-AEC7-492C-844A-E066E2825EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 		{D5A1A483-661F-451C-B391-BD5F5F255D51} = {CCB97BFE-7377-414C-972A-6329192500BD}
 		{B3447992-1BB0-44FF-9708-002B36F104AD} = {CCB97BFE-7377-414C-972A-6329192500BD}
 		{C6418A65-411E-42B6-BCFC-4F6E8E005058} = {CCB97BFE-7377-414C-972A-6329192500BD}
+		{60173905-AEC7-492C-844A-E066E2825EF0} = {5016574C-6063-4C59-AF1F-1115ACE172CE}
 	EndGlobalSection
 EndGlobal
