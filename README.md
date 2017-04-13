@@ -9,3 +9,5 @@ TDD BDD ATDD NetCore
 - [DI - docs.microsoft.com](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection "https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection")
 - [Asp.Net Core Tutorials - docs.microsoft.com](https://docs.microsoft.com/en-us/aspnet/core "https://docs.microsoft.com/en-us/aspnet/core")
 - [Testing Controllers Sample (Brainstorm)](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing "https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing")
+- [Visual Studio IDE Tutorials](https://docs.microsoft.com/en-us/visualstudio/ "https://docs.microsoft.com/en-us/visualstudio/")
+- [Visual Studio Dev Essentials](https://my.visualstudio.com/ "https://my.visualstudio.com/")
