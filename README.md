@@ -12,3 +12,4 @@ TDD BDD ATDD NetCore
 - [Visual Studio IDE Tutorials](https://docs.microsoft.com/en-us/visualstudio/ "https://docs.microsoft.com/en-us/visualstudio/")
 - [Visual Studio Dev Essentials](https://my.visualstudio.com/ "https://my.visualstudio.com/")
 - [xUnit](https://xunit.github.io/ "https://xunit.github.io/")
+- [Music Store - aspnet](https://github.com/aspnet/MusicStore "https://github.com/aspnet/MusicStore")

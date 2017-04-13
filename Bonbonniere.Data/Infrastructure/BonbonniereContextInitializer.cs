@@ -1,32 +1,45 @@
 ﻿using Bonbonniere.Core.Models;
+using Bonbonniere.Core.Models.MusicStore;
 using System.Linq;
 
 namespace Bonbonniere.Data.Infrastructure
 {
     public static class BonbonniereContextInitializer
     {
-        public static void Initialize(IDataProvider dataProvider)
+        public static void Initialize(BonbonniereContext context)
         {
-            var context = dataProvider.DbContext;
-
             context.Database.EnsureCreated();
 
-            if (context.Users.Any())
+            #region Initialize User
+            if (!context.Users.Any())
             {
-                return; //DB has been seeded
+                var users = new User[]
+                {
+                    new User { Username = "Administrator", Email = "admin@admin.net", Password = "123456" }
+                };
+                
+                foreach (User u in users)
+                {
+                    context.Users.Add(u);
+                }
+
+                context.SaveChanges();
             }
+            #endregion Initialize User
 
-            var users = new User[]
+            #region Initialize Music Store
+            if (!context.Albums.Any())
             {
-                new User{ Username = "Administrator", Email="admin@admin.net",Password="123456"}
-            };
+                var albums = new Album[]
+                {
+                    new Album{ Title = "First Album" },
+                    new Album{ Title = "Second Album" }
+                };
 
-            foreach (User u in users)
-            {
-                context.Users.Add(u);
+                context.Albums.AddRange(albums);
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
+            #endregion Initialize Music Store
         }
     }
 }

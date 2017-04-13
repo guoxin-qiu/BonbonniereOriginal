@@ -39,6 +39,7 @@ namespace Bonbonniere.Website
             services.AddScoped<IDataProvider, DataProviderFactory>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IBrainstormSessionRepository, BrainstormSessionRepository>();
+            services.AddScoped<IMusicStoreRepository, MusicStoreRepository>(); //TODO: mutiply inject?
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
@@ -67,11 +68,15 @@ namespace Bonbonniere.Website
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=StoreManager}/{action=Index}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            BonbonniereContextInitializer.Initialize(dataProvider);
+            BonbonniereContextInitializer.Initialize(dataProvider.DbContext);
         }
 
 

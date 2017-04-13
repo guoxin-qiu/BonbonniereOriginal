@@ -56,6 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ManageMusicStore.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageMusicStore.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Menu.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,6 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\ManageMusicStore.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ManageMusicStore.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Menu.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Menu.feature.cs</LastGenOutput>
