@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.AcceptanceTests", "Bonbonniere.AcceptanceTests\Bonbonniere.AcceptanceTests.csproj", "{4A16D216-C73B-4197-9F70-1C72BF4B19C4}"
 EndProject
@@ -20,6 +20,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.Data", "Bonbonniere.Data\Bonbonniere.Data.csproj", "{C6418A65-411E-42B6-BCFC-4F6E8E005058}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonbonniere.IntegrationTests", "Bonbonniere.IntegrationTests\Bonbonniere.IntegrationTests.csproj", "{60173905-AEC7-492C-844A-E066E2825EF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DDFABCC-7A32-4C2F-B783-8CC348B07F7B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
