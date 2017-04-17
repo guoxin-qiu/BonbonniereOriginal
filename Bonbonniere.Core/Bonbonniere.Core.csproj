@@ -12,8 +12,4 @@
     <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\WordTutor\" />
-  </ItemGroup>
-
 </Project>
