@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Register.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\WordTutor.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordTutor.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\AllTestsEventDefinition.cs" />
     <Compile Include="StepDefinitions\Common.cs" />
@@ -91,6 +96,10 @@
     <None Include="Features\Register.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Register.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\WordTutor.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>WordTutor.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

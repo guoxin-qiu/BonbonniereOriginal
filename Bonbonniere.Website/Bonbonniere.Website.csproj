@@ -10,6 +10,19 @@
     <Company>QYQ</Company>
     <Copyright>Copyright © QYQ 2017</Copyright>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\lib\vue\.bower.json" />
+    <Content Include="wwwroot\lib\vue\dist\README.md" />
+    <Content Include="wwwroot\lib\vue\dist\vue.common.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.esm.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.min.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.runtime.common.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.runtime.esm.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.runtime.js" />
+    <Content Include="wwwroot\lib\vue\dist\vue.runtime.min.js" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -29,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
+    <Folder Include="Areas\WordTutor\Controllers\" />
+    <Folder Include="Areas\WordTutor\ViewModels\" />
+    <Folder Include="Areas\WordTutor\Views\Home\" />
   </ItemGroup>
 
 </Project>

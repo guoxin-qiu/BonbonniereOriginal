@@ -1,0 +1,33 @@
+
+@{
+    ViewBag.Title = "WordTutor Home";
+}
+
+<div id="app">
+    <text-msg :msg="welcomeMsg"></text-msg>
+</div>
+
+@section Scripts{
+    <script src="~/lib/vue/dist/vue.js"></script>
+    <script type="text/template" id="vue-msg-template">
+        <div>
+            <br />
+            <p>{{msg}}</p>
+        </div>
+    </script>
+    <script type="text/javascript">
+        Vue.component("text-msg", {
+            props: ["msg"],
+            template: "#vue-msg-template"
+        });
+    </script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                welcomeMsg: "Welcome to the WordTutor home."
+            }
+        });
+    </script>
+}
+
