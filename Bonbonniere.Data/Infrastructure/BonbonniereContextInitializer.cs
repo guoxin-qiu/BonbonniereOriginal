@@ -37,8 +37,8 @@ namespace Bonbonniere.Data.Infrastructure
             {
                 var albums = new Album[]
                 {
-                    new Album{ Title = "First Album" },
-                    new Album{ Title = "Second Album" }
+                    new Album{ Title = "First Album", Price = 9.9m },
+                    new Album{ Title = "Second Album", Price = 12.2m }
                 };
                 context.Albums.AddRange(albums);
                 context.SaveChanges();

@@ -44,7 +44,7 @@ namespace Bonbonniere.AcceptanceTests.StepDefinitions
         [When(@"^I press ""(.*)"" button")]
         public void WhenIPressRegisterButton(string btnName)
         {
-            _webDriver.FindElement(By.Name("btn-" + btnName)).Click();
+            _webDriver.FindElement(By.Name("btn-" + btnName.Replace(" ",""))).Click();
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
@@ -69,5 +69,35 @@ namespace Bonbonniere.AcceptanceTests.StepDefinitions
             Assert.IsTrue(_webDriver.PageSource.Contains(text));
         }
 
+        [Then(@"I should see grid with")]
+        public void ThenIShouldSeeGridWith(Table table)
+        {
+            var expectRowCount = table.RowCount;
+            var htable = _webDriver.FindElement(By.TagName("table"));
+            var htheadtr = htable.FindElement(By.TagName("thead")).FindElement(By.TagName("tr"));
+            var htbodytrs = htable.FindElement(By.TagName("tbody")).FindElements(By.TagName("tr"));
+
+            var actualRowCount = htbodytrs.Count;
+            Assert.AreEqual(expectRowCount,actualRowCount);
+
+            var htheadtds = htheadtr.FindElements(By.TagName("th"));
+            var expectColumnsCount = table.Rows[0].Keys.Count;
+            Assert.AreEqual(expectColumnsCount, htheadtds.Count);
+
+            for (int i = 0; i < table.Rows[0].Keys.Count; i++)
+            {
+                Assert.AreEqual(table.Rows[0].Keys.ToArray()[i], htheadtds[i].Text);
+            }
+
+            for (int i = 0; i < table.RowCount; i++)
+            {
+                var tableRow = table.Rows[i];
+                var hRow = htbodytrs[i].FindElements(By.TagName("td"));
+                for (int j = 0; j < expectColumnsCount; j++)
+                {
+                    Assert.AreEqual(tableRow[j], hRow[j].Text);
+                }
+            }
+        }
     }
 }

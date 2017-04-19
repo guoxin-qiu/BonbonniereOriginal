@@ -7,19 +7,28 @@ Scenario: View All Stored Music Albums
 	Given I am on the site home page
 	When I open menu "MusicStore"
 	Then I should see page "Music Store"
-	#And I should see data list
+	And I should see grid with
+	| Title        | Price |
+	| First Album  | 9.9   |
+	| Second Album | 12.2  |
 
 Scenario: Add Album To Music Store
 	Given I am on the site home page
 	When I open menu "MusicStore"
-	And I press "Add" button
+	And I press "Create New" button
 	And I populate form with
 	| Title     | Price | AlbumArtUrl     |
 	| Yesterday | 8.99  | placeholder.png |
-	And I press "Save" button
-	Then I should see page "Album Adding"
+	And I press "Create" button
+	Then I should see page "Create Album"
 	And I should see "Create alubum successful." on page
 	And I should see page "Music Store"
+	And I should see grid with
+	| Title        | Price |
+	| First Album  | 9.9   |
+	| Second Album | 12.2  |
+	| Yesterday    | 8.99  |
+
 
 #Scenario: View Album Details in Music Store
 #Scenario: Edit Album in Music Store

@@ -11,17 +11,23 @@
 
 <div class="row">
     <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                @Html.DisplayNameFor(model=>model.FirstOrDefault().AlbumTitle)
-            </div>
-            <div class="panel-body">
-                @foreach(var album in Model)
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var album in Model)
                 {
-                    <div>@album.AlbumTitle</div>
+                    <tr>
+                        <td>@album.AlbumTitle</td>
+                        <td>@album.AlbumPrice</td>
+                    </tr>
                 }
-            </div>
-        </div>
+            </tbody>
+        </table>
     </div>
 </div>
 

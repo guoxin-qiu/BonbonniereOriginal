@@ -83,6 +83,18 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Then("I should see page \"Music Store\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Price"});
+            table1.AddRow(new string[] {
+                        "First Album",
+                        "9.9"});
+            table1.AddRow(new string[] {
+                        "Second Album",
+                        "12.2"});
+#line 10
+ testRunner.And("I should see grid with", ((string)(null)), table1, "And ");
+#line hidden
             this.ScenarioCleanup();
         }
         
@@ -92,33 +104,48 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddAlbumToMusicStore()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Album To Music Store", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
-#line 13
- testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
- testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.And("I press \"Add\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
+#line 16
+ testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 17
+ testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.And("I press \"Create New\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
                         "Price",
                         "AlbumArtUrl"});
-            table1.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Yesterday",
                         "8.99",
                         "placeholder.png"});
-#line 16
- testRunner.And("I populate form with", ((string)(null)), table1, "And ");
 #line 19
- testRunner.And("I press \"Save\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
- testRunner.Then("I should see page \"Album Adding\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
- testRunner.And("I should see \"Create alubum successful.\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I populate form with", ((string)(null)), table2, "And ");
 #line 22
+ testRunner.And("I press \"Create\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+ testRunner.Then("I should see page \"Create Album\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.And("I should see \"Create alubum successful.\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
  testRunner.And("I should see page \"Music Store\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "Price"});
+            table3.AddRow(new string[] {
+                        "First Album",
+                        "9.9"});
+            table3.AddRow(new string[] {
+                        "Second Album",
+                        "12.2"});
+            table3.AddRow(new string[] {
+                        "Yesterday",
+                        "8.99"});
+#line 26
+ testRunner.And("I should see grid with", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
