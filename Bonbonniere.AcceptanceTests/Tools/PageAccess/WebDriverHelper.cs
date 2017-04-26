@@ -1,16 +1,15 @@
-﻿using OpenQA.Selenium;
+﻿using Bonbonniere.AcceptanceTests.Tools.Settings;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
-using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
 {
     public class WebDriverHelper
     {
-        private static BrowserType _browserType = BrowserType.Chrome;
-        private const string _language = "zh-cn";//zh-cn, en-us
+        private static BrowserType _browserType = AppConfig.Browser;
+        private static string _language = AppConfig.BrowserLanguage;
 
         private static IWebDriver _currentDriver;
         private static List<string> _openedWindowHandles = new List<string>();
@@ -22,7 +21,6 @@ namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
                 if (_currentDriver != null)
                     return _currentDriver;
 
-                var driverFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tools\\BrowserDrivers");
                 switch (_browserType)
                 {
                     case BrowserType.Chrome:
@@ -30,7 +28,7 @@ namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
                         chromeOpts.AddArguments("disable-infobars");//close the infobar that chrome is being controlled by automated test
                         chromeOpts.AddArguments("--start-maximized");
                         chromeOpts.AddArguments("--lang=" + _language);
-                        _currentDriver = new ChromeDriver(driverFolder, chromeOpts);
+                        _currentDriver = new ChromeDriver(chromeOpts);
                         break;
                     case BrowserType.IE:
                         var ieOpts = new InternetExplorerOptions
@@ -39,7 +37,7 @@ namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
                             IntroduceInstabilityByIgnoringProtectedModeSettings = true,
                             EnablePersistentHover = false
                         };
-                        _currentDriver = new InternetExplorerDriver(driverFolder, ieOpts);
+                        _currentDriver = new InternetExplorerDriver(ieOpts);
                         break;
                 }
 

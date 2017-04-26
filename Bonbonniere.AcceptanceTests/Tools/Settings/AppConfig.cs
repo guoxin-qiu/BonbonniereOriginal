@@ -8,7 +8,15 @@ namespace Bonbonniere.AcceptanceTests.Tools.Settings
     {
         public static string WebsiteRootUrl { get { return GetValueByKey("WebsiteRootUrl"); } }
         public static string WebsitePostfix { get { return GetValueByKey("WebsitePostfix"); } }
-        public static string Browser { get { return GetValueByKey("Browser"); } }
+        public static BrowserType Browser
+        {
+            get
+            {
+                var browser = BrowserType.Chrome;
+                Enum.TryParse(GetValueByKey("Browser"), out browser);
+                return browser;
+            }
+        }
         public static string BrowserLanguage { get { return GetValueByKey("BrowserLanguage"); } }
 
 
