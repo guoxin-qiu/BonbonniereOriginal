@@ -1,7 +1,7 @@
 ﻿using Bonbonniere.AcceptanceTests.Tools.Settings;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 
 namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
@@ -11,10 +11,10 @@ namespace Bonbonniere.AcceptanceTests.Tools.PageAccess
         private static BrowserType _browserType = AppConfig.Browser;
         private static string _language = AppConfig.BrowserLanguage;
 
-        private static IWebDriver _currentDriver;
+        private static RemoteWebDriver _currentDriver;
         private static List<string> _openedWindowHandles = new List<string>();
 
-        public static IWebDriver CurrentDriver
+        public static RemoteWebDriver CurrentDriver
         {
             get
             {

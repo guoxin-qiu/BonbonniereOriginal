@@ -3,13 +3,14 @@
 	As a potential site user
 	I want to be able to register for a new account on this site
 
+@useconfig
 Scenario: Register Successfully
 	Given I am on the site home page
 	When I open menu "Register"
-	And I populate form with
-	| Username | Email          | Password  | ConfirmPassword |
-	| Denis   | denis@qyq.net | p@55w0rd! | p@55w0rd!       |
-	And I press "Register" button
+	And I fill in
+	| Username | Email         | Gender | Password  | ConfirmPassword | Favorite          | Gender2 | Favorite2           |
+	| Denis    | denis@qyq.net | Female | p@55w0rd! | p@55w0rd!       | Orange^Watermelon | Male    | Orange^Apple^Banana |
+	And I hit "Register"
 	Then I should see page "Registration"
 	And I should see "Account Created!" on page
 	And I should see "Denis" on page
@@ -21,7 +22,7 @@ Scenario Outline: Register Failed
 	And I populate form with
 	| Username   | Email   | Password   | ConfirmPassword   |
 	| <Username> | <Email> | <Password> | <ConfirmPassword> |
-	And I press "Register" button
+	And I hit "Register"
 	Then I should see page "Register"
 	And I should see the error message "<ErrorMessage>"
 	Examples: 

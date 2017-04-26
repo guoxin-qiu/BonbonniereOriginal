@@ -71,37 +71,47 @@ namespace Bonbonniere.AcceptanceTests.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Register Successfully")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register a new site user")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("useconfig")]
         public virtual void RegisterSuccessfully()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register Successfully", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register Successfully", new string[] {
+                        "useconfig"});
 #line 7
- testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 8
+ testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
  testRunner.When("I open menu \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Username",
                         "Email",
+                        "Gender",
                         "Password",
-                        "ConfirmPassword"});
+                        "ConfirmPassword",
+                        "Favorite",
+                        "Gender2",
+                        "Favorite2"});
             table1.AddRow(new string[] {
                         "Denis",
                         "denis@qyq.net",
+                        "Female",
                         "p@55w0rd!",
-                        "p@55w0rd!"});
-#line 9
- testRunner.And("I populate form with", ((string)(null)), table1, "And ");
-#line 12
- testRunner.And("I press \"Register\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "p@55w0rd!",
+                        "Orange^Watermelon",
+                        "Male",
+                        "Orange^Apple^Banana"});
+#line 10
+ testRunner.And("I fill in", ((string)(null)), table1, "And ");
 #line 13
- testRunner.Then("I should see page \"Registration\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hit \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("I should see \"Account Created!\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see page \"Registration\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 15
- testRunner.And("I should see \"Denis\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I should see \"Account Created!\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+ testRunner.And("I should see \"Denis\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
  testRunner.And("I should see \"denis@qyq.net\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -110,11 +120,11 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void RegisterFailed(string username, string email, string password, string confirmPassword, string errorMessage, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register Failed", exampleTags);
-#line 18
-this.ScenarioSetup(scenarioInfo);
 #line 19
- testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 20
+ testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
  testRunner.When("I open menu \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -127,13 +137,13 @@ this.ScenarioSetup(scenarioInfo);
                         string.Format("{0}", email),
                         string.Format("{0}", password),
                         string.Format("{0}", confirmPassword)});
-#line 21
+#line 22
  testRunner.And("I populate form with", ((string)(null)), table2, "And ");
-#line 24
- testRunner.And("I press \"Register\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
- testRunner.Then("I should see page \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hit \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
+ testRunner.Then("I should see page \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 27
  testRunner.And(string.Format("I should see the error message \"{0}\"", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

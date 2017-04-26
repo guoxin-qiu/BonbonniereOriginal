@@ -16,7 +16,7 @@ namespace Bonbonniere.Data.Infrastructure
             {
                 var users = new User[]
                 {
-                    new User { Username = "Administrator", Email = "admin@admin.net", Password = "123456" }
+                    new User { Username = "Administrator", Gender = Gender.Male, Email = "admin@admin.net", Password = "123456" }
                 };
                 
                 foreach (User u in users)

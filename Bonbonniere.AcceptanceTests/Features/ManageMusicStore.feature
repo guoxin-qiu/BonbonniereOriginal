@@ -12,14 +12,15 @@ Scenario: View All Stored Music Albums
 	| First Album  | 9.9   |
 	| Second Album | 12.2  |
 
+@ignore
 Scenario: Add Album To Music Store
 	Given I am on the site home page
 	When I open menu "MusicStore"
-	And I press "Create New" button
+	And I follow "Create New"
 	And I populate form with
 	| Title     | Price | AlbumArtUrl     |
 	| Yesterday | 8.99  | placeholder.png |
-	And I press "Create" button
+	And I hit "Create"
 	Then I should see page "Create Album"
 	And I should see "Create alubum successful." on page
 	And I should see page "Music Store"

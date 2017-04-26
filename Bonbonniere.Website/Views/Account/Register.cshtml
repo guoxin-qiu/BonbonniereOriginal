@@ -21,8 +21,49 @@
         <div class="form-group">
             <label asp-for="Email" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Email" class="form-control" />
+                <textarea asp-for="Email" class="form-control"></textarea>
                 <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <label for="gender-male"><input id="gender-male" name="Gender" type="radio" value="1" />Male</label>
+                <label for="gender-female"><input id="gender-female" name="Gender" type="radio" value="2" />Female</label>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Gender2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select name="Gender2">
+                    <option value="0"></option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Favorite2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select name="Favorite2" multiple>
+                    <option value="0"></option>
+                    <option value="1">Apple</option>
+                    <option value="2">Orange</option>
+                    <option value="3" selected>Grape</option>
+                    <option value="4" selected>Watermelon</option>
+                    <option value="5">Banana</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Favorite" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <label><input name="Favorite" type="checkbox" value="1" />Apple</label>
+                <label><input name="Favorite" type="checkbox" value="2" />Orange</label>
+                <label><input name="Favorite" type="checkbox" value="3" checked="checked" />Grape</label>
+                <label><input name="Favorite" type="checkbox" value="4" />Watermelon</label>
+                <label><input name="Favorite" type="checkbox" value="5" />Banana</label>
             </div>
         </div>
         <div class="form-group">
