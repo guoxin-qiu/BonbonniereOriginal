@@ -41,16 +41,6 @@ namespace Bonbonniere.AcceptanceTests.Bindings
             elMenu.Click();
         }
 
-        [When(@"^I populate form with")]
-        public void WhenIPopulateFormWith(Table table)
-        {
-            var row = table.Rows[0];
-            foreach (var name in table.Header)
-            {
-                _webDriver.FindElementByName(name).SendKeys(row[name]);
-            }
-        }
-
         [When(@"I fill in")]
         public void WhenIFillIn(Table table)
         {

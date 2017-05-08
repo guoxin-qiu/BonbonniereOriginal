@@ -17,7 +17,7 @@ Scenario: Add Album To Music Store
 	Given I am on the site home page
 	When I open menu "MusicStore"
 	And I follow "Create New"
-	And I populate form with
+	And I fill in
 	| Title     | Price | AlbumArtUrl     |
 	| Yesterday | 8.99  | placeholder.png |
 	And I hit "Create"

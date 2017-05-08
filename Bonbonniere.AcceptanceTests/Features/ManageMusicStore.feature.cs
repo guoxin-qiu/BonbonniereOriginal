@@ -124,7 +124,7 @@ this.ScenarioSetup(scenarioInfo);
                         "8.99",
                         "placeholder.png"});
 #line 20
- testRunner.And("I populate form with", ((string)(null)), table2, "And ");
+ testRunner.And("I fill in", ((string)(null)), table2, "And ");
 #line 23
  testRunner.And("I hit \"Create\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
