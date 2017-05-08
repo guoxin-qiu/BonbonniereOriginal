@@ -20,6 +20,7 @@ namespace Bonbonniere.Data.Infrastructure
         public DbSet<BrainstormSession> BrainStormSessions { get; set; }
 
         public DbSet<Album> Albums { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         public DbSet<Root> WordRoots { get; set; }
         public DbSet<Suffix> WordSuffixes { get; set; }

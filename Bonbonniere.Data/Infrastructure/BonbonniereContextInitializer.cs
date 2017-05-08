@@ -43,6 +43,17 @@ namespace Bonbonniere.Data.Infrastructure
                 context.Albums.AddRange(albums);
                 context.SaveChanges();
             }
+
+            if (!context.Genres.Any())
+            {
+                var genres = new Genre[]
+                {
+                    new Genre { Name = "First Genre" },
+                    new Genre { Name = "Second Genre" }
+                };
+                context.Genres.AddRange(genres);
+                context.SaveChanges();
+            }
         }
 
         private static void InitializeWordTutor(BonbonniereContext context)

@@ -7,5 +7,6 @@ namespace Bonbonniere.Core.Interfaces
     public interface IMusicStoreRepository
     {
         Task<List<Album>> ListAsync();
+        Task<List<Genre>> GetTopGenresAsync(int top);
     }
 }
