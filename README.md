@@ -14,3 +14,4 @@ TDD BDD ATDD NetCore
 - [xUnit](https://xunit.github.io/ "https://xunit.github.io/")
 - [Music Store - aspnet](https://github.com/aspnet/MusicStore "https://github.com/aspnet/MusicStore")
 - [Vue Tutorial - keepfool](https://github.com/keepfool/vue-tutorials "https://github.com/keepfool/vue-tutorials")
+- [View Component - andrewlock.net](https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/ "https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/")
