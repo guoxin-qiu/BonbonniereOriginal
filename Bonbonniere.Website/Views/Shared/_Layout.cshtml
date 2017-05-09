@@ -37,7 +37,8 @@
                     <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
                     <li><a asp-area="MusicStore" asp-controller="StoreManager" asp-action="Index">MusicStore</a></li>
                     <li><a asp-area="WordTutor" asp-controller="Home" asp-action="Index">WordTutor</a></li>
-                    @await Component.InvokeAsync("GenreMenu")
+
+                    <vc:genre-menu></vc:genre-menu>
                 </ul>
             </div>
         </div>
