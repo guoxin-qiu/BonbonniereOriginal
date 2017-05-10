@@ -22,8 +22,8 @@ namespace Bonbonniere.IntegrationTests
         {
             var services = new ServiceCollection();
             //services.AddOptions();
-            services.AddSingleton(typeof(IOptions<Settings>), GetMockedOptions());
-            services.AddSingleton(typeof(ILogger<>), typeof(MockedLogger<>));
+            services.AddSingleton(typeof(IOptions<Settings>), typeof(TestAppSettings));
+            services.AddSingleton(typeof(ILogger<>), typeof(TestLogger<>));
             services.AddScoped<IDataProvider, DataProviderFactory>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IBrainstormSessionRepository, BrainstormSessionRepository>();
@@ -40,37 +40,6 @@ namespace Bonbonniere.IntegrationTests
         public IntegrationTestBase(ITestOutputHelper output) : this()
         {
             _output = output;
-        }
-
-        private IOptions<Settings> GetMockedOptions()
-        {
-            var options = Options.Create(
-                new Settings
-                {
-                    DefaultConnection = string.Empty,
-                    DataProvider = DataProviderType.InMemory
-                }
-            );
-
-            return options;
-        }
-    }
-
-    public class MockedLogger<T> : ILogger<T>
-    {
-        public IDisposable BeginScope<TState>(TState state)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return false;
-        }
-
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-        {
-            
         }
     }
 }
