@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -47,6 +48,26 @@ namespace Bonbonniere.UnitTests.Controllers
             //Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+        [Fact]
+        public void SessionName_Required()
+        {
+            //Arrange
+            var model = new BrainstormSessionController.NewSessionModel()
+            {
+                SessionName = null
+            };
+            var context = new ValidationContext(model);
+            var result = new List<ValidationResult>();
+
+            //Act
+            var valid = Validator.TryValidateObject(model, context, result, true);
+
+            //Assert
+            Assert.False(valid);
+            var failure = Assert.Single(result, x => x.ErrorMessage == "The SessionName field is required.");
+            Assert.Single(failure.MemberNames, x => x == "SessionName");
         }
 
         [Fact]
