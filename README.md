@@ -16,3 +16,4 @@ TDD BDD ATDD NetCore
 - [Vue Tutorial - keepfool](https://github.com/keepfool/vue-tutorials "https://github.com/keepfool/vue-tutorials")
 - [View Component - andrewlock.net](https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/ "https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/")
 - [TestServer - Crash when calling a razor view](https://github.com/aspnet/Hosting/issues/954 "https://github.com/aspnet/Hosting/issues/954")
+- [eShopOnWeb - Microsoft](https://github.com/dotnet-architecture/eShopOnWeb "https://github.com/dotnet-architecture/eShopOnWeb")
