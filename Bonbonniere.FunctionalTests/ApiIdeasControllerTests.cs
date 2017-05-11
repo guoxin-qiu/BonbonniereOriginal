@@ -10,9 +10,9 @@ using Bonbonniere.Website;
 using Bonbonniere.Core.Models;
 using Bonbonniere.Website.ClientModels;
 
-namespace Bonbonniere.IntegrationTests
+namespace Bonbonniere.FunctionalTests
 {
-    public class ApiIdeasControllerTests : IClassFixture<TestFixture<Startup>>
+    public class ApiIdeasControllerTests : BaseWebTest
     {
         internal class NewIdeaDto
         {
@@ -26,13 +26,6 @@ namespace Bonbonniere.IntegrationTests
             public string Name { get; set; }
             public string Description { get; set; }
             public int SessionId { get; set; }
-        }
-
-        private readonly HttpClient _client;
-
-        public ApiIdeasControllerTests(TestFixture<Startup> fixture)
-        {
-            _client = fixture.Client;
         }
 
         [Fact]

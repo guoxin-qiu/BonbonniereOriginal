@@ -28,8 +28,6 @@ namespace Bonbonniere.Website.Controllers
                 IdeaCount = session.Ideas.Count
             }).ToList();
 
-            //return Json(model);
-            //return Content("Hello World");
             return View(model);
         }
 

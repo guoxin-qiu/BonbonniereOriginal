@@ -1,39 +1,26 @@
-﻿using Bonbonniere.Website;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
-namespace Bonbonniere.IntegrationTests
+namespace Bonbonniere.FunctionalTests
 {
-    public class BrainstormSessionControllerTests: IClassFixture<TestFixture<Startup>>
+    public class BrainstormSessionControllerTests : BaseWebTest
     {
-        private readonly HttpClient _client;
-        private ITestOutputHelper _output;
-
-        public BrainstormSessionControllerTests(TestFixture<Startup> fixture, ITestOutputHelper output)
-        {
-            _client = fixture.Client;
-            _output = output;
-        }
-
         [Fact]
         public async Task IndexReturnsCorrentSessionPage()
         {
             //Arrange
-            var testSession = Startup.GetTestSession();
-
+      
             //Arrange & Act
             var response = await _client.GetAsync("/BrainstormSession/Index");
 
             //Assert
-            _output.WriteLine("Return ViewResult is not correct.");
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.True(responseString.Contains(testSession.Name));
+            Assert.Contains("<title>Brainstormer - Bonbonniere</title>", responseString);
         }
 
         [Fact]
@@ -58,16 +45,13 @@ namespace Bonbonniere.IntegrationTests
         [Fact]
         public async Task DetailsReturnsCorrectSessionPage()
         {
-            // Arrange
-            var testSession = Startup.GetTestSession();
-
             // Arrange & Act
-            var response = await _client.GetAsync("/BrainstormSession/Details/1");
-            _output.WriteLine("Return ViewResult is not correct.");
+            var response = await _client.GetAsync("/BrainstormSession/Details/999");
+
             // Assert
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.True(responseString.Contains(testSession.Name));
+            Assert.Equal("Session not found.", responseString);
         }
     }
 }

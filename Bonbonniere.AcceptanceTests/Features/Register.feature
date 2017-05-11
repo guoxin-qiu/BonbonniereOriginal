@@ -19,7 +19,7 @@ Scenario: Register Successfully
 Scenario Outline: Register Failed
 	Given I am on the site home page
 	When I open menu "Register"
-	And I populate form with
+	And I fill in
 	| Username   | Email   | Password   | ConfirmPassword   |
 	| <Username> | <Email> | <Password> | <ConfirmPassword> |
 	And I hit "Register"

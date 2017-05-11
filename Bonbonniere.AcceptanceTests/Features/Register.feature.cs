@@ -138,7 +138,7 @@ this.ScenarioSetup(scenarioInfo);
                         string.Format("{0}", password),
                         string.Format("{0}", confirmPassword)});
 #line 22
- testRunner.And("I populate form with", ((string)(null)), table2, "And ");
+ testRunner.And("I fill in", ((string)(null)), table2, "And ");
 #line 25
  testRunner.And("I hit \"Register\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26

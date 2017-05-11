@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Bonbonniere.IntegrationTests
+namespace Bonbonniere.FunctionalTests
 {
     public static class HttpClientExtensions
     {
