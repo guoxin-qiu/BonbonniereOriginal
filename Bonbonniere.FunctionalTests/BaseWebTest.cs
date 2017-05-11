@@ -34,6 +34,7 @@ namespace Bonbonniere.FunctionalTests
                 .UseContentRoot(_contentRoot)
                 .ConfigureServices(InitializeServices)
                 .UseEnvironment("Development")
+                .UseApplicationInsights()
                 .UseStartup<Startup>();
 
             var server = new TestServer(builder);
