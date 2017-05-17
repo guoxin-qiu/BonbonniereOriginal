@@ -1,0 +1,77 @@
+﻿using Bonbonniere.Core.Interfaces;
+using Bonbonniere.Website.Filters;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Bonbonniere.Website.Features.BrainstormSession
+{
+    public class BrainstormSessionController : Controller
+    {
+        private readonly IBrainstormSessionRepository _sessionRepository;
+
+        public BrainstormSessionController(IBrainstormSessionRepository sessionRepository)
+        {
+            _sessionRepository = sessionRepository;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var sessionList = await _sessionRepository.ListAsync();
+            var model = sessionList.Select(session => new BrainstormSessionViewModel
+            {
+                Id = session.Id,
+                DateCreated = session.DateCreated,
+                Name = session.Name,
+                IdeaCount = session.Ideas.Count
+            }).ToList();
+
+            return View(model);
+        }
+
+        public class NewSessionModel
+        {
+            [Required]
+            public string SessionName { get; set; }
+        }
+
+        [HttpPost]
+        [ValidateModel]
+        public async Task<IActionResult> Index(NewSessionModel model)
+        {
+            await _sessionRepository.AddAsync(new Core.Models.BrainstormSession()
+            {
+                DateCreated = DateTimeOffset.Now,
+                Name = model.SessionName
+            });
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var session = await _sessionRepository.GetByIdAsync(id.Value);
+            if (session == null)
+            {
+                return Content("Session not found.");
+            }
+
+            var viewModel = new BrainstormSessionViewModel
+            {
+                DateCreated = session.DateCreated,
+                Name = session.Name,
+                IdeaCount = session.Ideas.Count,
+                Id = session.Id
+            };
+
+            return View(viewModel);
+        }
+    }
+}

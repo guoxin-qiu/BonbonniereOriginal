@@ -1,9 +1,6 @@
 ﻿using Bonbonniere.Core.Interfaces;
 using Bonbonniere.Core.Models;
-using Bonbonniere.Website.Api;
-using Bonbonniere.Website.ClientModels;
-using Bonbonniere.Website.Controllers;
-using Bonbonniere.Website.ViewModels;
+using Bonbonniere.Website.Features.Api;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;

@@ -40,12 +40,5 @@
     <ProjectReference Include="..\Bonbonniere.Data\Bonbonniere.Data.csproj" />
     <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\" />
-    <Folder Include="Areas\WordTutor\Controllers\" />
-    <Folder Include="Areas\WordTutor\ViewModels\" />
-    <Folder Include="Areas\WordTutor\Views\Home\" />
-    <Folder Include="Views\Shared\Components\GenreMenu\" />
-  </ItemGroup>
 
 </Project>

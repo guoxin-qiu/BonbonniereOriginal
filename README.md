@@ -17,3 +17,5 @@ TDD BDD ATDD NetCore
 - [View Component - andrewlock.net](https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/ "https://andrewlock.net/an-introduction-to-viewcomponents-a-login-status-view-component/")
 - [TestServer - Crash when calling a razor view](https://github.com/aspnet/Hosting/issues/954 "https://github.com/aspnet/Hosting/issues/954")
 - [eShopOnWeb - Microsoft](https://github.com/dotnet-architecture/eShopOnWeb "https://github.com/dotnet-architecture/eShopOnWeb")
+- [Mvc Filters - Microsoft](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters "https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters")
+- [ASP.NET Core MVC Feature - Microsoft](https://msdn.microsoft.com/en-us/magazine/mt763233.aspx "https://msdn.microsoft.com/en-us/magazine/mt763233.aspx")
