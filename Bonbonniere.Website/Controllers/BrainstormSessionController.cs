@@ -1,4 +1,5 @@
 ﻿using Bonbonniere.Core.Interfaces;
+using Bonbonniere.Website.Filters;
 using Bonbonniere.Website.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,13 +39,9 @@ namespace Bonbonniere.Website.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Index(NewSessionModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             await _sessionRepository.AddAsync(new Core.Models.BrainstormSession()
             {
                 DateCreated = DateTimeOffset.Now,
