@@ -2,6 +2,10 @@
 
   <PropertyGroup>    
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <Company>QYQ</Company>
+    <Authors>QYQ</Authors>
+    <Copyright>Copyright © QYQ 2017</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
