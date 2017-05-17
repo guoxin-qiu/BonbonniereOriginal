@@ -12,7 +12,7 @@ using System.Linq;
 using Bonbonniere.Core.Models;
 using System;
 using System.Threading.Tasks;
-using Bonbonniere.Website.Conventions;
+using Bonbonniere.Website.Additions.Conventions;
 
 namespace Bonbonniere.Website
 {

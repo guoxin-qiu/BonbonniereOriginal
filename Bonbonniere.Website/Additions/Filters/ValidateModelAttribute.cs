@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Bonbonniere.Website.Filters
+namespace Bonbonniere.Website.Additions.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

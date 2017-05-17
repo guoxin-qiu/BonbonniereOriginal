@@ -3,7 +3,7 @@ using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Data.Repositories;
 using Bonbonniere.Infrastructure;
 using Bonbonniere.Infrastructure.Domain;
-using Bonbonniere.Website.Components;
+using Bonbonniere.Website.Additions.Components;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

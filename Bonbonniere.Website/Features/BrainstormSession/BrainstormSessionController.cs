@@ -1,5 +1,5 @@
 ﻿using Bonbonniere.Core.Interfaces;
-using Bonbonniere.Website.Filters;
+using Bonbonniere.Website.Additions.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;

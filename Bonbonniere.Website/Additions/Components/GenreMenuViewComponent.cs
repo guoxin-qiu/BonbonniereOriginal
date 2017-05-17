@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 
-namespace Bonbonniere.Website.Components
+namespace Bonbonniere.Website.Additions.Components
 {
     [ViewComponent(Name = "GenreMenu")]
     public class GenreMenuViewComponent : ViewComponent
