@@ -35,6 +35,7 @@ namespace Bonbonniere.UnitTests.Controllers
         [Fact]
         public async Task IndexPost_ReturnsBadRequestResult_WhenModelStateIsInvalid()
         {
+            // TODO: When using attribute 'ValidateModel', the assert result will be wrong.
             // Arrange
             var mockReop = new Mock<IBrainstormSessionRepository>();
             var controller = new BrainstormSessionController(mockReop.Object);
