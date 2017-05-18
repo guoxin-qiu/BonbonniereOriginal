@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Bonbonniere.Infrastructure.Domain
 {
@@ -13,6 +12,7 @@ namespace Bonbonniere.Infrastructure.Domain
         void UpdateRange(IEnumerable<T> entities);
         void Update(Expression<Func<T, bool>> predicate);
         void Remove(T entity);
+        void Remove(object id);
         void RemoveRange(IEnumerable<T> entities);
         void Remove(Expression<Func<T, bool>> predicate);
     }

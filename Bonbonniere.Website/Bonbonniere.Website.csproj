@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\js\user-index.js" />
     <Content Include="wwwroot\lib\vue\.bower.json" />
     <Content Include="wwwroot\lib\vue\dist\README.md" />
     <Content Include="wwwroot\lib\vue\dist\vue.common.js" />

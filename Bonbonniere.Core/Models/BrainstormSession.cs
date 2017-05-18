@@ -10,7 +10,12 @@ namespace Bonbonniere.Core.Models
         public string Name { get; set; }
         public DateTimeOffset DateCreated { get; set; }
 
-        public List<Idea> Ideas { get; } = new List<Idea>();
+        public virtual List<Idea> Ideas { get; set; }
+
+        public BrainstormSession()
+        {
+            Ideas = new List<Idea>();
+        }
 
         public void AddIdea(Idea idea)
         {
@@ -24,5 +29,7 @@ namespace Bonbonniere.Core.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTimeOffset DateCreated { get; set; }
+
+        public virtual BrainstormSession BrainstormSession { get; set; }
     }
 }

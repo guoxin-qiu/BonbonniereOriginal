@@ -15,7 +15,7 @@ namespace Bonbonniere.Infrastructure.Domain
 
         int Count();
         Task<int> CountAsync();
-        IQueryable<T> FetchAll(params Expression<Func<T, object>>[] paths);
+        List<T> FetchAll(params Expression<Func<T, object>>[] paths);
         Task<List<T>> FetchAllAsync(params Expression<Func<T, object>>[] paths);
         List<T> FetchAllOrdered(Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths);
         Task<List<T>> FetchAllOrderedAsync(Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths);

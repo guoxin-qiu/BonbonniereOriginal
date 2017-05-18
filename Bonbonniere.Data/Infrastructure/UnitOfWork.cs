@@ -5,6 +5,7 @@ namespace Bonbonniere.Data.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
+        // TODO: Transaction
         private IDataProvider _dataProvider;
 
         public UnitOfWork(IDataProvider dataProvider)

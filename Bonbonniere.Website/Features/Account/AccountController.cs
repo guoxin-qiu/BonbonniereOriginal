@@ -45,7 +45,7 @@ namespace Bonbonniere.Website.Features.Account
         {
             if (ModelState.IsValid)
             {
-                var user = new User { Username = model.Username, Email = model.Email, Gender = (Gender)model.Gender, Password = model.Password };
+                var user = new User { Username = model.Username, Email = model.Email, Password = model.Password };
                 _userRepository.Add(user);
                 _uow.Commit();
                 return RedirectToAction("Registration", new { id = user.Id, isNew = true });

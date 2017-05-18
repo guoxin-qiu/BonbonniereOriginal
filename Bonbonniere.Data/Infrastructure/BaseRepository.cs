@@ -51,6 +51,11 @@ namespace Bonbonniere.Data.Infrastructure
             Table.Remove(entity);
         }
 
+        public void Remove(object id)
+        {
+            Table.Remove(GetById(id));
+        }
+
         public void RemoveRange(IEnumerable<T> entities)
         {
             Table.RemoveRange(entities);
@@ -74,12 +79,12 @@ namespace Bonbonniere.Data.Infrastructure
 
         public T Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] paths)
         {
-            return FetchAll(paths).Where(predicate).SingleOrDefault();
+            return FetchAllQueryable(paths).Where(predicate).SingleOrDefault();
         }
 
         public Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] paths)
         {
-            return FetchAll(paths).Where(predicate).SingleOrDefaultAsync();
+            return FetchAllQueryable(paths).Where(predicate).SingleOrDefaultAsync();
         }
 
         public int Count()
@@ -92,17 +97,14 @@ namespace Bonbonniere.Data.Infrastructure
             return Table.CountAsync();
         }
 
-        public IQueryable<T> FetchAll(params Expression<Func<T, object>>[] paths)
+        public List<T> FetchAll(params Expression<Func<T, object>>[] paths)
         {
-            var all = Table as IQueryable<T>;
-            if (paths is null)
-                return all;
-            return paths.Aggregate(all, (current, path) => current.Include(path));
+            return FetchAllQueryable(paths).ToList();
         }
 
         public Task<List<T>> FetchAllAsync(params Expression<Func<T, object>>[] paths)
         {
-            return FetchAll(paths).ToListAsync();
+            return FetchAllQueryable(paths).ToListAsync();
         }
 
         public List<T> FetchAllOrdered(Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths)
@@ -166,14 +168,22 @@ namespace Bonbonniere.Data.Infrastructure
         }
 
         #region Private
+        private IQueryable<T> FetchAllQueryable(params Expression<Func<T, object>>[] paths)
+        {
+            var all = Table as IQueryable<T>;
+            if (paths is null)
+                return all;
+            return paths.Aggregate(all, (current, path) => current.Include(path));
+        }
+
         private IQueryable<T> FetchAllBy(params Expression<Func<T, object>>[] paths)
         {
-            return FetchAll(paths);
+            return FetchAllQueryable(paths);
         }
 
         private IQueryable<T> FetchAllBy(Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths)
         {
-            var orderable = new Orderable<T>(FetchAll(paths));
+            var orderable = new Orderable<T>(FetchAllQueryable(paths));
             order(orderable);
             return orderable.Queryable;
         }
@@ -185,7 +195,7 @@ namespace Bonbonniere.Data.Infrastructure
 
         private IQueryable<T> FetchBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] paths)
         {
-            return FetchAll(paths).Where(predicate);
+            return FetchAllQueryable(paths).Where(predicate);
         }
 
         private IQueryable<T> FetchBy(Expression<Func<T, bool>> predicate, Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths)

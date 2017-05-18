@@ -49,6 +49,7 @@ namespace Bonbonniere.Website
                     options.ViewLocationFormats.Add("/Features/{3}/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/{3}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/Shared/Modal/{0}.cshtml");
 
                     // add support for features side-by-side with /Views
                     // (do NOT clear ViewLocationFormats)
@@ -72,6 +73,7 @@ namespace Bonbonniere.Website
 
             services.AddScoped<IBrainstormService, BrainstormService>();
             services.AddScoped<IMusicStoreService, MusicStoreService>(); //TODO: mutiply inject?
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

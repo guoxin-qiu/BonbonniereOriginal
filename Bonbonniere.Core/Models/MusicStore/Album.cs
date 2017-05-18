@@ -6,20 +6,15 @@ namespace Bonbonniere.Core.Models.MusicStore
 {
     public class Album : IAggregateRoot
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
-        [StringLength(160, MinimumLength = 2)]
         public string Title { get; set; }
-        [Required]
         [Range(0.01, 100.00)]
-        [DataType(DataType.Currency)]
+        [DataType(DataType.Currency)] // TODO: add validation
         public decimal Price { get; set; }
-        [StringLength(1024)]
         public string ArtUrl { get; set; }
-
-        [Required]
         public DateTimeOffset CreatedOn { get; set; }
+
+        public virtual Genre Genre { get; set; }
 
         public Album()
         {

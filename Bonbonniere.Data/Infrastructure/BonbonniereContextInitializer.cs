@@ -13,16 +13,16 @@ namespace Bonbonniere.Data.Infrastructure
             context.Database.EnsureCreated();
 
             #region Initialize User
-            if (!context.Users.Any())
+            if (!context.Set<User>().Any())
             {
                 var users = new User[]
                 {
-                    new User { Username = "Administrator", Gender = Gender.Male, Email = "admin@admin.net", Password = "123456" }
+                    new User { Username = "Administrator", Email = "admin@admin.net", Password = "123456" }
                 };
                 
                 foreach (User u in users)
                 {
-                    context.Users.Add(u);
+                    context.Set<User>().Add(u);
                 }
 
                 context.SaveChanges();
@@ -35,7 +35,7 @@ namespace Bonbonniere.Data.Infrastructure
 
         private static void InitializeBrainstorm(BonbonniereContext context)
         {
-            if (!context.BrainStormSessions.Any())
+            if (!context.Set<BrainstormSession>().Any())
             {
                 var session = new BrainstormSession
                 {
@@ -51,32 +51,32 @@ namespace Bonbonniere.Data.Infrastructure
 
                 session.AddIdea(idea);
 
-                context.BrainStormSessions.Add(session);
+                context.Set<BrainstormSession>().Add(session);
                 context.SaveChanges();
             }
         }
 
         private static void InitializeMusicStore(BonbonniereContext context)
         {
-            if (!context.Albums.Any())
+            if (!context.Set<Album>().Any())
             {
                 var albums = new Album[]
                 {
                     new Album{ Title = "First Album", Price = 9.9m },
                     new Album{ Title = "Second Album", Price = 12.2m }
                 };
-                context.Albums.AddRange(albums);
+                context.Set<Album>().AddRange(albums);
                 context.SaveChanges();
             }
 
-            if (!context.Genres.Any())
+            if (!context.Set<Genre>().Any())
             {
                 var genres = new Genre[]
                 {
                     new Genre { Name = "First Genre" },
                     new Genre { Name = "Second Genre" }
                 };
-                context.Genres.AddRange(genres);
+                context.Set<Genre>().AddRange(genres);
                 context.SaveChanges();
             }
         }
@@ -86,7 +86,7 @@ namespace Bonbonniere.Data.Infrastructure
             // Root Data From:      https://www.learnthat.org/pages/view/roots.html
             // Suffix Data From:    https://www.learnthat.org/pages/view/suffix.html
 
-            if (!context.WordRoots.Any())
+            if (!context.Set<Root>().Any())
             {
                 var wordRoots = new Root[] 
                 {
@@ -479,7 +479,7 @@ namespace Bonbonniere.Data.Infrastructure
                     new Root { RootWord = "zo/o", Meanings = "animal life", Origin = "Greek ", Example = "zoology - study of animals; zooid - resembling an animal; zooplankton - minute floating aquatic animals.", ListOfWords = "zoo, zookeeper, zoological, zoologist, zoology, zooid, zoophobia, zooplankton, zoogenic," },
                     new Root { RootWord = "zyg/o", Meanings = "pair", Origin = "Greek ", Example = "zygote - a cell formed by the union of two gametes and the organism developing from that; zygomorphic - pertaining to organisms that can be divided into symmetrical halves along one axis only.", ListOfWords = "zygote, heterozygote, dizygotic, heterozygosity, heterozygous, homozygosity, homozygous, zygomorphic," }
                 };
-                context.WordRoots.AddRange(wordRoots);
+                context.Set<Root>().AddRange(wordRoots);
                 context.SaveChanges();
 
                 var wordSuffixes = new Suffix[]
@@ -605,7 +605,7 @@ namespace Bonbonniere.Data.Infrastructure
                     new Suffix { SuffixWord = "-wise", Meanings = "in what manner or direction", Example = "clockwise, lengthwise, otherwise", ListOfWords = "clockwise, lengthwise, likewise, otherwise," },
                     new Suffix { SuffixWord = "-y", Meanings = "made up of, characterized", Example = "brainy, fruity, gooey", ListOfWords = "airy, creamy, fiery, musty, grouchy, noisy, touchy, showy, petty, witty, bushy, clumsy, filthy, gloomy, glossy, greasy, icy, moody, scary, chewy, cloudy, drowsy, foggy, grumpy, juicy, misty, nasty, rocky, slippery, snowy,sticky, sturdy, tasty, curly, jolly, lazy, lucky, muddy, plenty, sunny, funny, handy, lovely," }
                 };
-                context.WordSuffixes.AddRange(wordSuffixes);
+                context.Set<Suffix>().AddRange(wordSuffixes);
                 context.SaveChanges();
             }
         }
