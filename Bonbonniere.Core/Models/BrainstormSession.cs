@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Bonbonniere.Infrastructure.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace Bonbonniere.Core.Models
 {
-    public class BrainstormSession
+    public class BrainstormSession : IAggregateRoot
     {
         public int Id { get; set; }
         public string Name { get; set; }

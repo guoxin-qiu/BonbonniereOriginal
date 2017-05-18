@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Bonbonniere.Infrastructure.Domain;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bonbonniere.Core.Models
 {
     [Table("Users")]
-    public class User
+    public class User : IAggregateRoot
     {
         [Key]
         public int Id { get; set; }

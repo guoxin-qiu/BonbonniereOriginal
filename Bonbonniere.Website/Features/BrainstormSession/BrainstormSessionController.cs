@@ -1,4 +1,4 @@
-﻿using Bonbonniere.Core.Interfaces;
+﻿using Bonbonniere.Services;
 using Bonbonniere.Website.Additions.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,16 +10,16 @@ namespace Bonbonniere.Website.Features.BrainstormSession
 {
     public class BrainstormSessionController : Controller
     {
-        private readonly IBrainstormSessionRepository _sessionRepository;
+        private readonly IBrainstormService _brainstormService;
 
-        public BrainstormSessionController(IBrainstormSessionRepository sessionRepository)
+        public BrainstormSessionController(IBrainstormService brainstormService)
         {
-            _sessionRepository = sessionRepository;
+            _brainstormService = brainstormService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var sessionList = await _sessionRepository.ListAsync();
+            var sessionList = await _brainstormService.GetListAsync();
             var model = sessionList.Select(session => new BrainstormSessionViewModel
             {
                 Id = session.Id,
@@ -41,7 +41,7 @@ namespace Bonbonniere.Website.Features.BrainstormSession
         [ValidateModel]
         public async Task<IActionResult> Index(NewSessionModel model)
         {
-            await _sessionRepository.AddAsync(new Core.Models.BrainstormSession()
+            await _brainstormService.AddSessionAsync(new Core.Models.BrainstormSession()
             {
                 DateCreated = DateTimeOffset.Now,
                 Name = model.SessionName
@@ -57,7 +57,7 @@ namespace Bonbonniere.Website.Features.BrainstormSession
                 return RedirectToAction("Index");
             }
 
-            var session = await _sessionRepository.GetByIdAsync(id.Value);
+            var session = await _brainstormService.GetByIdAsync(id.Value);
             if (session == null)
             {
                 return Content("Session not found.");

@@ -1,4 +1,5 @@
 ﻿using Bonbonniere.Infrastructure.Domain;
+using System.Threading.Tasks;
 
 namespace Bonbonniere.Data.Infrastructure
 {
@@ -14,6 +15,11 @@ namespace Bonbonniere.Data.Infrastructure
         public void Commit()
         {
             _dataProvider.DbContext.SaveChanges();
+        }
+
+        public Task CommitAsync()
+        {
+            return _dataProvider.DbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Bonbonniere.Core.Interfaces;
-using Bonbonniere.Core.Models.MusicStore;
+﻿using Bonbonniere.Core.Models.MusicStore;
+using Bonbonniere.Services;
 using Bonbonniere.Website.Features.MusicStore;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -16,8 +16,8 @@ namespace Bonbonniere.UnitTests.Controllers.MusicStore
         public async Task Index_ReturnsAViewResult_WithAListOfAlbums()
         {
             //Arrange
-            var mockRepo = new Mock<IMusicStoreRepository>();
-            mockRepo.Setup(repo => repo.ListAsync())
+            var mockRepo = new Mock<IMusicStoreService>();
+            mockRepo.Setup(repo => repo.GetListAsync())
                 .Returns(Task.FromResult(GetTestAlbums()));
             var controller = new MusicStoreManagerController(mockRepo.Object);
 

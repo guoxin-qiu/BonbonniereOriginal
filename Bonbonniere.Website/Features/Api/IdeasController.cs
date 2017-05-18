@@ -2,25 +2,25 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Bonbonniere.Core.Interfaces;
 using Bonbonniere.Core.Models;
+using Bonbonniere.Services;
 
 namespace Bonbonniere.Website.Features.Api
 {
     [Route("api/ideas")]
     public class IdeasController : Controller
     {
-        private readonly IBrainstormSessionRepository _sessionRepository;
+        private readonly IBrainstormService _brainstormService;
 
-        public IdeasController(IBrainstormSessionRepository sessionRepository)
+        public IdeasController(IBrainstormService brainstormService)
         {
-            _sessionRepository = sessionRepository;
+            _brainstormService = brainstormService;
         }
 
         [HttpGet("forsession/{sessionId}")]
         public async Task<IActionResult> ForSession(int sessionId)
         {
-            var session = await _sessionRepository.GetByIdAsync(sessionId);
+            var session = await _brainstormService.GetByIdAsync(sessionId);
             if(session == null)
             {
                 return NotFound(sessionId);
@@ -45,7 +45,7 @@ namespace Bonbonniere.Website.Features.Api
                 return BadRequest(ModelState);
             }
 
-            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+            var session = await _brainstormService.GetByIdAsync(model.SessionId);
             if(session == null)
             {
                 return NotFound(model.SessionId);
@@ -60,7 +60,7 @@ namespace Bonbonniere.Website.Features.Api
 
             session.AddIdea(idea);
 
-            await _sessionRepository.UpdateAsync(session);
+            await _brainstormService.UpdateAsync(session);
 
             return Ok(session);
         }

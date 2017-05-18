@@ -123,7 +123,7 @@ namespace Bonbonniere.FunctionalTests
         public async Task ForSessionReturnsIdeasForValidSessionId()
         {
             // Arrange
-            var testSession = Startup.GetTestSession();
+            var testSession = GetTestSession();
 
             // Act
             var response = await _client.GetAsync("/api/ideas/forsession/1");
@@ -134,6 +134,25 @@ namespace Bonbonniere.FunctionalTests
                 await response.Content.ReadAsStringAsync());
             var firstIdea = ideaList.First();
             Assert.Equal(testSession.Ideas.First().Name, firstIdea.Name);
+        }
+
+        private BrainstormSession GetTestSession()
+        {
+            var session = new BrainstormSession
+            {
+                Name = "Test Session 1",
+                DateCreated = new DateTime(2017, 4, 12)
+            };
+            var idea = new Idea
+            {
+                DateCreated = new DateTime(2017, 4, 12),
+                Description = "Totally awesome idea",
+                Name = "Awesome idea"
+            };
+
+            session.AddIdea(idea);
+
+            return session;
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Bonbonniere.Infrastructure.Domain;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bonbonniere.Core.Models.MusicStore
 {
-    public class Genre
+    public class Genre : IAggregateRoot
     {
         [Key]
         public int Id { get; set; }

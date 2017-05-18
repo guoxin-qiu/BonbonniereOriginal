@@ -1,5 +1,5 @@
-﻿using Bonbonniere.Core.Interfaces;
-using Bonbonniere.Core.Models;
+﻿using Bonbonniere.Core.Models;
+using Bonbonniere.Services;
 using Bonbonniere.Website.Features.BrainstormSession;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -18,8 +18,8 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task Index_ReturnsAViewResult_WithAListOfBrainstormSessions()
         {
             // Arrange
-            var mockReop = new Mock<IBrainstormSessionRepository>();
-            mockReop.Setup(repo => repo.ListAsync()).Returns(Task.FromResult(GetTestSessions()));
+            var mockReop = new Mock<IBrainstormService>();
+            mockReop.Setup(repo => repo.GetListAsync()).Returns(Task.FromResult(GetTestSessions()));
             var controller = new BrainstormSessionController(mockReop.Object);
 
             //Act
@@ -37,7 +37,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             // TODO: When using attribute 'ValidateModel', the assert result will be wrong.
             // Arrange
-            var mockReop = new Mock<IBrainstormSessionRepository>();
+            var mockReop = new Mock<IBrainstormService>();
             var controller = new BrainstormSessionController(mockReop.Object);
             controller.ModelState.AddModelError("SessionName", "Required");
             var newSession = new BrainstormSessionController.NewSessionModel();
@@ -74,8 +74,8 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task IndexPost_ReturnsARedirectToIndexAndAddsSession_WhenModelStateIsValid()
         {
             // Arrange
-            var mockReop = new Mock<IBrainstormSessionRepository>();
-            mockReop.Setup(repo => repo.AddAsync(It.IsAny<BrainstormSession>()))
+            var mockReop = new Mock<IBrainstormService>();
+            mockReop.Setup(repo => repo.AddSessionAsync(It.IsAny<BrainstormSession>()))
                 .Returns(Task.CompletedTask)
                 .Verifiable();
             var controller = new BrainstormSessionController(mockReop.Object);
@@ -98,7 +98,7 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task Details_ReturnsARedirectToIndex_WhenIdIsNull()
         {
             //Arrange
-            var controller = new BrainstormSessionController(sessionRepository: null);
+            var controller = new BrainstormSessionController(null);
 
             //Act
             var result = await controller.Details(id: null);
@@ -113,7 +113,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult((BrainstormSession)null));
             var controller = new BrainstormSessionController(mockRepo.Object);
@@ -131,7 +131,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult(GetTestSessions().FirstOrDefault(s => s.Id == testSessionId)));
             var controller = new BrainstormSessionController(mockRepo.Object);

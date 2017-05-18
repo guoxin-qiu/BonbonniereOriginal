@@ -4,15 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Bonbonniere.Infrastructure.Domain;
-using Bonbonniere.Data.Repositories;
 using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Infrastructure;
-using Bonbonniere.Core.Interfaces;
-using System.Linq;
-using Bonbonniere.Core.Models;
-using System;
-using System.Threading.Tasks;
 using Bonbonniere.Website.Additions.Conventions;
+using Bonbonniere.Services;
 
 namespace Bonbonniere.Website
 {
@@ -72,9 +67,11 @@ namespace Bonbonniere.Website
             services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddScoped<IDataProvider, DataProviderFactory>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<IBrainstormSessionRepository, BrainstormSessionRepository>();
-            services.AddScoped<IMusicStoreRepository, MusicStoreRepository>(); //TODO: mutiply inject?
+            services.AddScoped(typeof(IReadonlyRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IBrainstormService, BrainstormService>();
+            services.AddScoped<IMusicStoreService, MusicStoreService>(); //TODO: mutiply inject?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,9 +85,6 @@ namespace Bonbonniere.Website
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-
-                var brainstormRepo = app.ApplicationServices.GetService<IBrainstormSessionRepository>();
-                InitializeDatabaseAsync(brainstormRepo).Wait();
             }
             else
             {
@@ -111,34 +105,6 @@ namespace Bonbonniere.Website
             });
 
             BonbonniereContextInitializer.Initialize(dataProvider.DbContext);
-        }
-
-
-        public async Task InitializeDatabaseAsync(IBrainstormSessionRepository repo)
-        {
-            var sessionList = await repo.ListAsync();
-            if (!sessionList.Any())
-            {
-                await repo.AddAsync(GetTestSession());
-            }
-        }
-
-        public static BrainstormSession GetTestSession()
-        {
-            var session = new BrainstormSession
-            {
-                Name = "Test Session 1",
-                DateCreated = new DateTime(2017, 4, 12)
-            };
-            var idea = new Idea
-            {
-                DateCreated = new DateTime(2017, 4, 12),
-                Description = "Totally awesome idea",
-                Name = "Awesome idea"
-            };
-
-            session.AddIdea(idea);
-            return session;
         }
     }
 }

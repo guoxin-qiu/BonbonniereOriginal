@@ -1,5 +1,5 @@
-﻿using Bonbonniere.Core.Interfaces;
-using Bonbonniere.Core.Models;
+﻿using Bonbonniere.Core.Models;
+using Bonbonniere.Services;
 using Bonbonniere.Website.Features.Api;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -17,7 +17,7 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task Create_ReturnsBadRequest_GivenInvalidModel()
         {
             //Arrange
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             var controller = new IdeasController(mockRepo.Object);
             controller.ModelState.AddModelError("error", "some error");
 
@@ -33,7 +33,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult((BrainstormSession)null));
             var controller = new IdeasController(mockRepo.Object);
@@ -53,7 +53,7 @@ namespace Bonbonniere.UnitTests.Controllers
             string testName = "test name";
             string testDescription = "test description";
             var testSession = GetTestSession();
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult(testSession));
             var controller = new IdeasController(mockRepo.Object);
@@ -85,7 +85,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 111;
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult((BrainstormSession)null));
             var controller = new IdeasController(mockRepo.Object);
@@ -103,7 +103,7 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormService>();
             mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult(GetTestSession()));
             var controller = new IdeasController(mockRepo.Object);

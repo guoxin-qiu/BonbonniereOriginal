@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Bonbonniere.Infrastructure.Domain;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bonbonniere.Core.Models.MusicStore
 {
-    public class Album
+    public class Album : IAggregateRoot
     {
         [Key]
         public int Id { get; set; }

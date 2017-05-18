@@ -1,6 +1,7 @@
 ﻿using Bonbonniere.Core.Models;
 using Bonbonniere.Core.Models.MusicStore;
 using Bonbonniere.Core.Models.WordTutor;
+using System;
 using System.Linq;
 
 namespace Bonbonniere.Data.Infrastructure
@@ -29,6 +30,30 @@ namespace Bonbonniere.Data.Infrastructure
             #endregion Initialize User
 
             InitializeMusicStore(context);
+            InitializeBrainstorm(context);
+        }
+
+        private static void InitializeBrainstorm(BonbonniereContext context)
+        {
+            if (!context.BrainStormSessions.Any())
+            {
+                var session = new BrainstormSession
+                {
+                    Name = "Test Session 1",
+                    DateCreated = new DateTime(2017, 4, 12)
+                };
+                var idea = new Idea
+                {
+                    DateCreated = new DateTime(2017, 4, 12),
+                    Description = "Totally awesome idea",
+                    Name = "Awesome idea"
+                };
+
+                session.AddIdea(idea);
+
+                context.BrainStormSessions.Add(session);
+                context.SaveChanges();
+            }
         }
 
         private static void InitializeMusicStore(BonbonniereContext context)
