@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Bonbonniere.Website.Additions.Conventions
+namespace Bonbonniere.Website.Additions.Extesions.Conventions
 {
     public class FeatureConvention : IControllerModelConvention
     {

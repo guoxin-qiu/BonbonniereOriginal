@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using System;
 using System.Collections.Generic;
 
-namespace Bonbonniere.Website.Additions.Conventions
+namespace Bonbonniere.Website.Additions.Extesions.Conventions
 {
     public class FeatureViewLocationExpander : IViewLocationExpander
     {

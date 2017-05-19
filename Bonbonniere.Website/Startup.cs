@@ -3,16 +3,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Infrastructure;
-using Bonbonniere.Website.Additions.Conventions;
 using Bonbonniere.Services;
+using Bonbonniere.Website.Additions.Extensions;
+using Bonbonniere.Data;
+using Bonbonniere.Website.Additions.Middleware;
 
 namespace Bonbonniere.Website
 {
     public class Startup
     {
+        private IServiceCollection _services;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -28,52 +31,14 @@ namespace Bonbonniere.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // https://msdn.microsoft.com/en-us/magazine/mt763233.aspx
-            // https://github.com/smallprogram/OrganizingAspNetCore
-            services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
-                .AddRazorOptions(options =>
-                {
-                    // {0} - Action Name
-                    // {1} - Controller Name
-                    // {2} - Area Name
-                    // {3} - Feature Name
-                    // Replace normal view location entirely
-                    options.AreaViewLocationFormats.Clear();
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/Shared/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/Shared/{0}.cshtml");
-
-                    // replace normal view location entirely
-                    options.ViewLocationFormats.Clear();
-                    options.ViewLocationFormats.Add("/Features/{3}/{1}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/{3}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/Shared/Modal/{0}.cshtml");
-
-                    // add support for features side-by-side with /Views
-                    // (do NOT clear ViewLocationFormats)
-                    //options.ViewLocationFormats.Insert(0, "/Features/Shared/{0}.cshtml");
-                    //options.ViewLocationFormats.Insert(0, "/Features/{3}/{0}.cshtml");
-                    //options.ViewLocationFormats.Insert(0, "/Features/{3}/{1}/{0}.cshtml");
-                    //
-                    // (do NOT clear AreaViewLocationFormats)
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/Shared/{0}.cshtml");
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/{3}/{0}.cshtml");
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
-
-                    options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
-                });
+            services.AddFeatureMvc();
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
-            services.AddScoped<IDataProvider, DataProviderFactory>();
-            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IReadonlyRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddScoped<IBrainstormService, BrainstormService>();
-            services.AddScoped<IMusicStoreService, MusicStoreService>(); //TODO: mutiply inject?
-            services.AddScoped<IUserService, UserService>();
+            services.RegisterRepositoryModule();
+            services.RegisterServiceModule();
+
+            _services = services;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,11 +47,11 @@ namespace Bonbonniere.Website
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                app.UseAllServicesMap(_services);
             }
             else
             {
