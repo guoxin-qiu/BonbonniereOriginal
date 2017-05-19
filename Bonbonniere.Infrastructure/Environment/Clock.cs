@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bonbonniere.Infrastructure.Util
+namespace Bonbonniere.Infrastructure.Environment
 {
     public class Clock : IClock
     {

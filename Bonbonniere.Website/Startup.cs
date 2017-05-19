@@ -9,6 +9,8 @@ using Bonbonniere.Services;
 using Bonbonniere.Website.Additions.Extensions;
 using Bonbonniere.Data;
 using Bonbonniere.Website.Additions.Middleware;
+using Bonbonniere.Infrastructure.FileSystem;
+using Bonbonniere.Infrastructure.Logging;
 
 namespace Bonbonniere.Website
 {
@@ -35,6 +37,8 @@ namespace Bonbonniere.Website
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
 
+            services.AddSingleton<IImageService, LocalFileImageService>();
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.RegisterRepositoryModule();
             services.RegisterServiceModule();
 

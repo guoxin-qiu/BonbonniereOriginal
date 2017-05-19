@@ -12,6 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\images\2.png" />
+    <Content Include="wwwroot\images\cup.png" />
+    <Content Include="wwwroot\images\dotnetcup.png" />
     <Content Include="wwwroot\js\user-index.js" />
     <Content Include="wwwroot\lib\vue\.bower.json" />
     <Content Include="wwwroot\lib\vue\dist\README.md" />

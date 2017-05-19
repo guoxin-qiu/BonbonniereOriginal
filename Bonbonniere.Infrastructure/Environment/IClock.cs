@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bonbonniere.Infrastructure.Util
+namespace Bonbonniere.Infrastructure.Environment
 {
     public interface IClock
     {
