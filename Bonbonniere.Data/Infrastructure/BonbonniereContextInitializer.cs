@@ -17,7 +17,20 @@ namespace Bonbonniere.Data.Infrastructure
             {
                 var users = new User[]
                 {
-                    new User { Username = "Administrator", Email = "admin@admin.net", Password = "123456" }
+                    new User
+                    {
+                        Username = "Administrator",
+                        Email = "admin@admin.net",
+                        Password = "123456",
+                        UserProfile = new UserProfile
+                        {
+                            FirstName = "Denis",
+                            LastName = "Qiu",
+                            Gender = Gender.Male,
+                            IPAddress = "10.10.20.154",
+                            Address = "Dalian"
+                        }
+                    }
                 };
                 
                 foreach (User u in users)
@@ -62,8 +75,8 @@ namespace Bonbonniere.Data.Infrastructure
             {
                 var albums = new Album[]
                 {
-                    new Album{ Title = "First Album", Price = 9.9m },
-                    new Album{ Title = "Second Album", Price = 12.2m }
+                    new Album { Title = "First Album", Price = 9.9m, ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Second Album", Price = 12.2m, ArtUrl = "N/A", CreatedOn = DateTime.Now }
                 };
                 context.Set<Album>().AddRange(albums);
                 context.SaveChanges();

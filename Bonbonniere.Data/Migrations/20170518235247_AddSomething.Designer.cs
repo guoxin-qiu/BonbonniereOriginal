@@ -9,9 +9,10 @@ using Bonbonniere.Core.Models;
 namespace Bonbonniere.Data.Migrations
 {
     [DbContext(typeof(MSSQLDataContext))]
-    partial class MSSQLDataContextModelSnapshot : ModelSnapshot
+    [Migration("20170518235247_AddSomething")]
+    partial class AddSomething
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
