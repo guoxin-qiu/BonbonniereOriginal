@@ -12,7 +12,7 @@ namespace Bonbonniere.Website.Additions.Middleware
             app.Map("/allservices", builder => builder.Run(async context =>
             {
                 var sb = new StringBuilder();
-                sb.Append("<h1>All Services</h1>");
+                sb.Append($"<h1>All Services({services.Count})</h1>");
                 sb.Append("<table><thead>");
                 sb.Append("<tr><th>Type</th><th>Lifetime</th><th>Instance</th></tr>");
                 sb.Append("</thead><tbody>");
