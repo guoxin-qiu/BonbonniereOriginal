@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Bonbonniere.Services;
+using Bonbonniere.Services.Interfaces;
 
 namespace Bonbonniere.Website.Features.MusicStore
 {

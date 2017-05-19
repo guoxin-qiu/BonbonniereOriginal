@@ -1,18 +1,10 @@
 ﻿using Bonbonniere.Core.Models;
 using Bonbonniere.Infrastructure.Domain;
+using Bonbonniere.Services.Interfaces;
 using System.Collections.Generic;
 
-namespace Bonbonniere.Services
+namespace Bonbonniere.Services.Implementations
 {
-    public interface IUserService
-    {
-        List<User> GetUsers();
-        User GetUser(int id);
-        void InsertUser(User user);
-        void UpdateUser(User user);
-        void DeleteUser(int id);
-    }
-
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;

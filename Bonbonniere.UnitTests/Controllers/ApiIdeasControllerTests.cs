@@ -1,5 +1,5 @@
 ﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Services;
+using Bonbonniere.Services.Interfaces;
 using Bonbonniere.Website.Features.Api;
 using Microsoft.AspNetCore.Mvc;
 using Moq;

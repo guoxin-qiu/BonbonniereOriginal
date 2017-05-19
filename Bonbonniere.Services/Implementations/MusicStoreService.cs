@@ -1,17 +1,11 @@
 ﻿using Bonbonniere.Core.Models.MusicStore;
 using Bonbonniere.Infrastructure.Domain;
+using Bonbonniere.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Bonbonniere.Services
+namespace Bonbonniere.Services.Implementations
 {
-    public interface IMusicStoreService
-    {
-        Task<List<Album>> GetListAsync();
-
-        Task<List<Genre>> GetTopGenresAsync(int top);
-    }
-
     public class MusicStoreService : IMusicStoreService
     {
         private readonly IRepository<Album> _albumRepository;

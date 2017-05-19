@@ -1,5 +1,5 @@
 ﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Services;
+using Bonbonniere.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

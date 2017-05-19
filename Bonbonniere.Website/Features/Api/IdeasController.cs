@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Bonbonniere.Core.Models;
-using Bonbonniere.Services;
+using Bonbonniere.Services.Interfaces;
 
 namespace Bonbonniere.Website.Features.Api
 {

@@ -1,6 +1,6 @@
-﻿using Bonbonniere.Data.Infrastructure;
+﻿using Bonbonniere.Data;
+using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Infrastructure;
-using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Services;
 using Bonbonniere.Website.Additions.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +23,9 @@ namespace Bonbonniere.IntegrationTests
             //services.AddOptions();
             services.AddSingleton(typeof(IOptions<Settings>), typeof(TestAppSettings));
             services.AddSingleton(typeof(ILogger<>), typeof(TestLogger<>));
-            services.AddScoped<IDataProvider, DataProviderFactory>();
-            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IReadonlyRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddScoped<IBrainstormService, BrainstormService>();
-            services.AddScoped<IMusicStoreService, MusicStoreService>();
+            services.RegisterRepositoryModule();
+            services.RegisterServiceModule();
 
             services.AddScoped(typeof(GenreMenuViewComponent));
 

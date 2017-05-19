@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Bonbonniere.Services.Implementations;
+using Bonbonniere.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Bonbonniere.Services
 {

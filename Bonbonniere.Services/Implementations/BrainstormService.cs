@@ -2,18 +2,10 @@
 using Bonbonniere.Infrastructure.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
+using Bonbonniere.Services.Interfaces;
 
-namespace Bonbonniere.Services
+namespace Bonbonniere.Services.Implementations
 {
-    public interface IBrainstormService
-    {
-        Task<List<BrainstormSession>> GetListAsync();
-        Task AddSessionAsync(BrainstormSession session);
-        Task<BrainstormSession> GetByIdAsync(int id);
-        Task UpdateAsync(BrainstormSession session);
-    }
-
     public class BrainstormService : IBrainstormService
     {
         private readonly IRepository<BrainstormSession> _sessionRepository;
