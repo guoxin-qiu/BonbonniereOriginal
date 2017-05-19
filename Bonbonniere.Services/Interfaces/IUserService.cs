@@ -1,5 +1,7 @@
 ﻿using Bonbonniere.Core.Models;
+using Bonbonniere.Services.ServiceModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Bonbonniere.Services.Interfaces
 {
@@ -10,5 +12,6 @@ namespace Bonbonniere.Services.Interfaces
         void InsertUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
+        Task<SignInResult> PasswordSignInAsync(string username, string password, bool isPersistent);
     }
 }

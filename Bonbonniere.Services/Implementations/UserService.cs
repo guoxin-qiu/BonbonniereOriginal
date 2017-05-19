@@ -2,6 +2,9 @@
 using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Services.Interfaces;
 using System.Collections.Generic;
+using Bonbonniere.Services.ServiceModels;
+using System;
+using System.Threading.Tasks;
 
 namespace Bonbonniere.Services.Implementations
 {
@@ -48,6 +51,11 @@ namespace Bonbonniere.Services.Implementations
             _userProfileRepository.Remove(id);
             _userRepository.Remove(id);
             _uow.Commit();
+        }
+
+        public Task<SignInResult> PasswordSignInAsync(string username, string password, bool isPersistent)
+        {
+            throw new NotImplementedException(); // TODO: need to implement PasswordSignInAsync
         }
     }
 }
