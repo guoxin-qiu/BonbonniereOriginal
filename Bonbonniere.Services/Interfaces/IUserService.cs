@@ -9,6 +9,7 @@ namespace Bonbonniere.Services.Interfaces
     {
         List<User> GetUsers();
         User GetUser(int id);
+        User GetUser(string email);
         void InsertUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);

@@ -7,6 +7,7 @@ namespace Bonbonniere.AcceptanceTests.Tools.Settings
     public static class AppConfig
     {
         public static string WebsiteRootUrl { get { return GetValueByKey("WebsiteRootUrl"); } }
+        public static string LogOnUrl { get { return GetValueByKey("LogOnUrl"); } }
         public static string WebsitePostfix { get { return GetValueByKey("WebsitePostfix"); } }
         public static BrowserType Browser
         {

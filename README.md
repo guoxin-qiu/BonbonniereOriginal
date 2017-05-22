@@ -19,3 +19,4 @@ TDD BDD ATDD NetCore
 - [eShopOnWeb - Microsoft](https://github.com/dotnet-architecture/eShopOnWeb "https://github.com/dotnet-architecture/eShopOnWeb")
 - [Mvc Filters - Microsoft](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters "https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters")
 - [ASP.NET Core MVC Feature - Microsoft](https://msdn.microsoft.com/en-us/magazine/mt763233.aspx "https://msdn.microsoft.com/en-us/magazine/mt763233.aspx")
+- [Authorization Sample - GitHub](https://github.com/blowdart/AspNetAuthorizationWorkshop "https://github.com/blowdart/AspNetAuthorizationWorkshop")

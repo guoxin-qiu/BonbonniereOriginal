@@ -34,6 +34,19 @@ namespace Bonbonniere.AcceptanceTests.Bindings
             _webDriver.Navigate().GoToUrl(AppConfig.WebsiteRootUrl);
         }
 
+        [Given(@"I am on the site home page with logon")]
+        public void GivenIOpenTheWebsiteAndLogOn()
+        {
+            _webDriver.Navigate().GoToUrl(AppConfig.LogOnUrl);
+            if (_webDriver.Url.Contains(AppConfig.LogOnUrl))
+            {
+                var signInTable = new Table("Email", "Password");
+                signInTable.AddRow("admin@admin.net", "123456");
+                WhenIFillIn(signInTable);
+                WhenIHit("LOG IN");
+            }
+        }
+
         [When(@"^I open menu ""(.*)""$")]
         public void WhenIOpenMenu(string menuTitle)
         {

@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Bonbonniere.Core.Models;
 using Bonbonniere.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bonbonniere.Website.Features.Api
 {
     [Route("api/ideas")]
+    [AllowAnonymous] // TODO: Authorization?
     public class IdeasController : Controller
     {
         private readonly IBrainstormService _brainstormService;

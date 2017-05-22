@@ -29,6 +29,11 @@ namespace Bonbonniere.Services.Implementations
             return _userRepository.Get(t => t.Id == id, r => r.UserProfile);
         }
 
+        public User GetUser(string email)
+        {
+            return _userRepository.Get(t => t.Email == email, r => r.UserProfile);
+        }
+
         public List<User> GetUsers()
         {
             return _userRepository.FetchAll(t=>t.UserProfile);
@@ -53,9 +58,23 @@ namespace Bonbonniere.Services.Implementations
             _uow.Commit();
         }
 
-        public Task<SignInResult> PasswordSignInAsync(string username, string password, bool isPersistent)
+        public Task<SignInResult> PasswordSignInAsync(string email, string password, bool isPersistent)
         {
-            throw new NotImplementedException(); // TODO: need to implement PasswordSignInAsync
+            // TODO: How to do with the 'isPersistent' parameter?
+            if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return Task.FromResult(SignInResult.Failed);
+            }
+            var user = _userRepository.Get(t => t.Email == email && t.Password == password, u => u.UserProfile);
+            if(user == null)
+            {
+                return Task.FromResult(SignInResult.Failed);
+            }
+
+            var result = SignInResult.Success;
+            result.Name = user.FullName;
+            result.Email = user.Email;
+            return Task.FromResult(result);
         }
     }
 }

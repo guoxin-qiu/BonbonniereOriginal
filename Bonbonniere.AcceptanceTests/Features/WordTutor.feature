@@ -4,7 +4,7 @@
 	I want to remember more words
 
 Scenario: WordTutor
-	Given I am on the site home page
+	Given I am on the site home page with logon
 	When I open menu "WordTutor"
 	Then I should see page "WordTutor Home"
 	And I should see "Welcome to the WordTutor home." on page

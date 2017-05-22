@@ -23,7 +23,7 @@ namespace Bonbonniere.Website.Features.UserInfo
                 {
                     Id = t.Id,
                     Email = t.Email,
-                    Name = $"{t.UserProfile.FirstName} {t.UserProfile.LastName}",
+                    Name = t.FullName,
                     Address = t.UserProfile.Address
                 }).ToList();
 
@@ -118,7 +118,7 @@ namespace Bonbonniere.Website.Features.UserInfo
         public IActionResult DeleteUser(int id)
         {
             var userEntity = _userService.GetUser(id);
-            string name = $"{userEntity.UserProfile.FirstName} {userEntity.UserProfile.LastName}";
+            string name = userEntity.FullName;
             return PartialView("_DeleteUser", name);
         }
 

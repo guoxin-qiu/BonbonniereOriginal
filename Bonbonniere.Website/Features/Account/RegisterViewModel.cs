@@ -11,6 +11,10 @@ namespace Bonbonniere.Website.Features.Account
         public string Email { get; set; }
         [Required]
         public int Gender { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         [Required(ErrorMessage = "Password is required.")]
         [MinLength(6, ErrorMessage = "Password must be longer than 5 characters.")]
         [DataType(DataType.Password)]

@@ -6,11 +6,11 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal">
+<form asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
     <h4>Create a new account.</h4>
     <hr />
     <div class="form-horizontal">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Username" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -21,7 +21,7 @@
         <div class="form-group">
             <label asp-for="Email" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <textarea asp-for="Email" class="form-control"></textarea>
+                <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
@@ -31,6 +31,20 @@
                 <label for="gender-male"><input id="gender-male" name="Gender" type="radio" value="1" />Male</label>
                 <label for="gender-female"><input id="gender-female" name="Gender" type="radio" value="2" />Female</label>
                 <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

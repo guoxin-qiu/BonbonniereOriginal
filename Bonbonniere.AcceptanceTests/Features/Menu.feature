@@ -4,7 +4,7 @@
 	I want to check the menu correct
 
 Scenario Outline: Navigate From Menu
-	Given I am on the site home page
+	Given I am on the site home page with logon
 	When I open menu "<MenuTitle>"
 	Then I should see page "<PageTitle>"
 	Examples: 

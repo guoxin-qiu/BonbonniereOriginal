@@ -10,6 +10,8 @@
         public bool Succeeded { get; protected set; }
         public bool IsLockedOut { get; protected set; }
         public bool IsNotAllowed { get; protected set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
 
         public static SignInResult Success => _success;
         public static SignInResult Failed => _failed;

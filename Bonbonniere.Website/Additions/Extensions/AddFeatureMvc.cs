@@ -1,4 +1,6 @@
 ﻿using Bonbonniere.Website.Additions.Extesions.Conventions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bonbonniere.Website.Additions.Extensions
@@ -7,11 +9,17 @@ namespace Bonbonniere.Website.Additions.Extensions
     {
         // https://msdn.microsoft.com/en-us/magazine/mt763233.aspx
         // https://github.com/smallprogram/OrganizingAspNetCore
+        // https://github.com/blowdart/AspNetAuthorizationWorkshop Step 2
 
         public static IMvcBuilder AddFeatureMvc(this IServiceCollection services)
         {
-            return services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
-                .AddRazorOptions(options =>
+            return services.AddMvc(config =>
+            {
+                config.Conventions.Add(new FeatureConvention());
+                config.Filters.Add(new AuthorizeFilter( 
+                        new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
+            })
+            .AddRazorOptions(options =>
                 {
                     // {0} - Action Name
                     // {1} - Controller Name
@@ -30,17 +38,6 @@ namespace Bonbonniere.Website.Additions.Extensions
                     options.ViewLocationFormats.Add("/Features/{3}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/Shared/Modal/{0}.cshtml");
-
-                    // add support for features side-by-side with /Views
-                    // (do NOT clear ViewLocationFormats)
-                    //options.ViewLocationFormats.Insert(0, "/Features/Shared/{0}.cshtml");
-                    //options.ViewLocationFormats.Insert(0, "/Features/{3}/{0}.cshtml");
-                    //options.ViewLocationFormats.Insert(0, "/Features/{3}/{1}/{0}.cshtml");
-                    //
-                    // (do NOT clear AreaViewLocationFormats)
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/Shared/{0}.cshtml");
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/{3}/{0}.cshtml");
-                    //options.AreaViewLocationFormats.Insert(0, "/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
 
                     options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
                 });

@@ -77,7 +77,7 @@ namespace Bonbonniere.AcceptanceTests.Features
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am on the site home page with logon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
@@ -109,7 +109,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Given("I am on the site home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am on the site home page with logon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
  testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19

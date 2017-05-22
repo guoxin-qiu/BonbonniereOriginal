@@ -12,7 +12,6 @@
     <dt>
         @Html.DisplayNameFor(model => model.Username)
     </dt>
-
     <dd>
         @Html.DisplayFor(model => model.Username)
     </dd>
@@ -20,8 +19,28 @@
     <dt>
         @Html.DisplayNameFor(model => model.Email)
     </dt>
-
     <dd>
         @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Gender)
+    </dt>
+    <dd>
+        @Enum.GetName(typeof(Bonbonniere.Core.Models.Gender), Model.Gender)
     </dd>
 </dl>

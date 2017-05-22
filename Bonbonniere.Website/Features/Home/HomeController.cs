@@ -1,5 +1,6 @@
 ﻿using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace Bonbonniere.Website.Features.Home
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

@@ -4,7 +4,7 @@
 	I want to build a music store
 
 Scenario: View All Stored Music Albums
-	Given I am on the site home page
+	Given I am on the site home page with logon
 	When I open menu "MusicStore"
 	Then I should see page "Music Store"
 	And I should see grid with
@@ -14,7 +14,7 @@ Scenario: View All Stored Music Albums
 
 @ignore
 Scenario: Add Album To Music Store
-	Given I am on the site home page
+	Given I am on the site home page with logon
 	When I open menu "MusicStore"
 	And I follow "Create New"
 	And I fill in
