@@ -29,7 +29,7 @@ namespace Bonbonniere.FunctionalTests
         protected HttpClient GetClient()
         {
             var startupAssembly = typeof(Startup).GetTypeInfo().Assembly;
-            _contentRoot = GetProjectPath("", startupAssembly);
+            _contentRoot = GetProjectPath("src", startupAssembly);
             var builder = new WebHostBuilder()
                 .UseContentRoot(_contentRoot)
                 .ConfigureServices(InitializeServices)

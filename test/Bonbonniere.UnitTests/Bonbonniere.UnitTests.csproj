@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bonbonniere.Core\Bonbonniere.Core.csproj" />
-    <ProjectReference Include="..\Bonbonniere.Data\Bonbonniere.Data.csproj" />
-    <ProjectReference Include="..\Bonbonniere.Services\Bonbonniere.Services.csproj" />
-    <ProjectReference Include="..\Bonbonniere.Website\Bonbonniere.Website.csproj" />
+    <ProjectReference Include="..\..\src\Bonbonniere.Core\Bonbonniere.Core.csproj" />
+    <ProjectReference Include="..\..\src\Bonbonniere.Data\Bonbonniere.Data.csproj" />
+    <ProjectReference Include="..\..\src\Bonbonniere.Services\Bonbonniere.Services.csproj" />
+    <ProjectReference Include="..\..\src\Bonbonniere.Website\Bonbonniere.Website.csproj" />
   </ItemGroup>
 
   <ItemGroup>
