@@ -18,9 +18,12 @@ namespace Bonbonniere.Website
     public class Startup
     {
         private IServiceCollection _services;
+        private IHostingEnvironment _env;
 
         public Startup(IHostingEnvironment env)
         {
+            _env = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -34,7 +37,7 @@ namespace Bonbonniere.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddFeatureMvc();
+            services.AddFeatureMvc(_env);
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
 
@@ -61,7 +64,7 @@ namespace Bonbonniere.Website
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("Test"))
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();

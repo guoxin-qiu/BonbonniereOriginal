@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Bonbonniere.Website.Features.Api
 {
     [Route("api/ideas")]
-    [AllowAnonymous] // TODO: Authorization?
+    [AllowAnonymous]
     public class IdeasController : Controller
     {
         private readonly IBrainstormService _brainstormService;

@@ -1,5 +1,6 @@
 ﻿using Bonbonniere.Website.Additions.Extesions.Conventions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,13 +12,16 @@ namespace Bonbonniere.Website.Additions.Extensions
         // https://github.com/smallprogram/OrganizingAspNetCore
         // https://github.com/blowdart/AspNetAuthorizationWorkshop Step 2
 
-        public static IMvcBuilder AddFeatureMvc(this IServiceCollection services)
+        public static IMvcBuilder AddFeatureMvc(this IServiceCollection services, IHostingEnvironment env)
         {
             return services.AddMvc(config =>
             {
                 config.Conventions.Add(new FeatureConvention());
-                config.Filters.Add(new AuthorizeFilter( 
+                if (!env.IsEnvironment("FunctionalTest"))
+                {
+                    config.Filters.Add(new AuthorizeFilter(
                         new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
+                }
             })
             .AddRazorOptions(options =>
                 {

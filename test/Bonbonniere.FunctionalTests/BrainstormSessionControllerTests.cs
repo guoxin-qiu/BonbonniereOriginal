@@ -9,7 +9,6 @@ namespace Bonbonniere.FunctionalTests
 {
     public class BrainstormSessionControllerTests : BaseWebTest
     {
-        // TODO: How to test authorization page by TestServer
         [Fact]
         public async Task IndexReturnsCorrentSessionPage()
         {

@@ -33,7 +33,7 @@ namespace Bonbonniere.FunctionalTests
             var builder = new WebHostBuilder()
                 .UseContentRoot(_contentRoot)
                 .ConfigureServices(InitializeServices)
-                .UseEnvironment("Development")
+                .UseEnvironment("FunctionalTest")
                 .UseApplicationInsights()
                 .UseStartup<Startup>();
 
@@ -57,7 +57,9 @@ namespace Bonbonniere.FunctionalTests
             services.AddSingleton(manager);
 
             services.Configure((RazorViewEngineOptions options) =>
-            {// https://github.com/aspnet/Hosting/issues/954
+            {
+                // https://github.com/aspnet/Hosting/issues/954
+                // TODO: Can not use javascript, <input asp-for=""/> and so on
                 var previous = options.CompilationCallback;
                 options.CompilationCallback = (context) =>
                 {
@@ -78,6 +80,7 @@ namespace Bonbonniere.FunctionalTests
                     assemblies.Add(MetadataReference.CreateFromFile(Assembly.Load(new AssemblyName("Microsoft.AspNetCore.Mvc.Razor")).Location));
                     assemblies.Add(MetadataReference.CreateFromFile(Assembly.Load(new AssemblyName("Microsoft.AspNetCore.Html.Abstractions")).Location));
                     assemblies.Add(MetadataReference.CreateFromFile(Assembly.Load(new AssemblyName("System.Text.Encodings.Web")).Location));
+                    //assemblies.Add(MetadataReference.CreateFromFile(Assembly.Load(new AssemblyName("Microsoft.AspNetCore.Mvc.TagHelpers")).Location));
 
                     context.Compilation = context.Compilation.AddReferences(assemblies);
                 };
