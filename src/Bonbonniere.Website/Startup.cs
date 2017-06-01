@@ -12,6 +12,7 @@ using Bonbonniere.Website.Additions.Middleware;
 using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Bonbonniere.Website
 {
@@ -54,7 +55,7 @@ namespace Bonbonniere.Website
         {
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = "Cookie",
+                AuthenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme,
                 LoginPath = new PathString("/Account/SignIn"),
                 AccessDeniedPath = new PathString("/Account/Forbidden"),
                 AutomaticAuthenticate = true,

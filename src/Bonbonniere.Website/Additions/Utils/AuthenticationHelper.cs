@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Authentication;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,10 @@ namespace Bonbonniere.Website.Additions.Utils
             var userIdentity = new ClaimsIdentity("SuperSecureLogin");
             userIdentity.AddClaims(claims);
             var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-            httpContext.Authentication.SignInAsync("Cookie", userPrincipal,
+            
+            httpContext.Authentication.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme, 
+                userPrincipal,
                 new AuthenticationProperties
                 {
                     ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
@@ -31,7 +34,7 @@ namespace Bonbonniere.Website.Additions.Utils
 
         public static void RemoveAuthentication(this HttpContext httpContext)
         {
-            httpContext.Authentication.SignOutAsync("Cookie").Wait();
+            httpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
         }
     }
 }
