@@ -38,9 +38,13 @@ namespace Bonbonniere.Website.Features.BrainstormSession
         }
 
         [HttpPost]
-        [ValidateModel]
         public async Task<IActionResult> Index(NewSessionModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await _brainstormService.AddSessionAsync(new Core.Models.BrainstormSession()
             {
                 DateCreated = DateTimeOffset.Now,

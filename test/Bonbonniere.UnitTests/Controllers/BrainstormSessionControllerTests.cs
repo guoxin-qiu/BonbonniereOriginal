@@ -33,9 +33,8 @@ namespace Bonbonniere.UnitTests.Controllers
         }
 
         [Fact]
-        public async Task IndexPost_ReturnsBadRequestResult_WhenModelStateIsInvalid()
+        public async Task IndexPost_ReturnsViewResult_WhenModelStateIsInvalid()
         {
-            // TODO: When using attribute 'ValidateModel', the assert result will be wrong.
             // Arrange
             var mockReop = new Mock<IBrainstormService>();
             var controller = new BrainstormSessionController(mockReop.Object);
@@ -46,8 +45,7 @@ namespace Bonbonniere.UnitTests.Controllers
             var result = await controller.Index(newSession);
 
             //Assert
-            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.IsType<SerializableError>(badRequestResult.Value);
+            var viewResult = Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
