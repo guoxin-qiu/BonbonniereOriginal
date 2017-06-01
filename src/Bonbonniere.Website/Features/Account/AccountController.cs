@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Bonbonniere.Core.Models;
+﻿using Bonbonniere.Core.Models;
+using Bonbonniere.Services.Interfaces;
+using Bonbonniere.Website.Additions.Utils;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Bonbonniere.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http.Authentication;
-using System;
 
 namespace Bonbonniere.Website.Features.Account
 {
@@ -42,7 +39,7 @@ namespace Bonbonniere.Website.Features.Account
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public IActionResult Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
 
@@ -62,22 +59,7 @@ namespace Bonbonniere.Website.Features.Account
                 };
                 _userService.InsertUser(user);
 
-                var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.GivenName, user.FullName, ClaimValueTypes.String, null),
-                        new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, null)
-                    };
-                var userIdentity = new ClaimsIdentity("SuperSecureLogin");
-                userIdentity.AddClaims(claims);
-                var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-                await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                    new AuthenticationProperties
-                    {
-                        ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                        IsPersistent = false,
-                        AllowRefresh = false
-                    });
+                HttpContext.SetAuthentication(user.Email, user.FullName);
 
                 return RedirectToLocal(returnUrl);
             }
@@ -121,26 +103,10 @@ namespace Bonbonniere.Website.Features.Account
 
             if (ModelState.IsValid)
             {
-                var result = await _userService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe);
+                var result = await _userService.PasswordSignInAsync(model.Email, model.Password);
                 if (result.Succeeded)
                 {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.NameIdentifier, result.Email, ClaimValueTypes.String, null),
-                        new Claim(ClaimTypes.Name, result.Name, ClaimValueTypes.String, null)
-                    };
-                    var userIdentity = new ClaimsIdentity("SuperSecureLogin");
-                    userIdentity.AddClaims(claims);
-                    var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-                    await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                        new AuthenticationProperties
-                        {
-                            ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                            IsPersistent = false,
-                            AllowRefresh = false
-                        });
-
+                    HttpContext.SetAuthentication(result.Email, result.Name, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.IsLockedOut)
@@ -159,9 +125,9 @@ namespace Bonbonniere.Website.Features.Account
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignOut()
+        public IActionResult SignOut()
         {
-            await HttpContext.Authentication.SignOutAsync("Cookie");
+            HttpContext.RemoveAuthentication();
 
             return RedirectToLocal("/");
         }

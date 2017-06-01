@@ -13,6 +13,6 @@ namespace Bonbonniere.Services.Interfaces
         void InsertUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
-        Task<SignInResult> PasswordSignInAsync(string username, string password, bool isPersistent);
+        Task<SignInResult> PasswordSignInAsync(string username, string password);
     }
 }

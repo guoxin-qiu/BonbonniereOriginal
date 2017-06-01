@@ -3,7 +3,6 @@ using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Services.Interfaces;
 using System.Collections.Generic;
 using Bonbonniere.Services.ServiceModels;
-using System;
 using System.Threading.Tasks;
 
 namespace Bonbonniere.Services.Implementations
@@ -58,9 +57,8 @@ namespace Bonbonniere.Services.Implementations
             _uow.Commit();
         }
 
-        public Task<SignInResult> PasswordSignInAsync(string email, string password, bool isPersistent)
+        public Task<SignInResult> PasswordSignInAsync(string email, string password)
         {
-            // TODO: How to do with the 'isPersistent' parameter?
             if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 return Task.FromResult(SignInResult.Failed);
