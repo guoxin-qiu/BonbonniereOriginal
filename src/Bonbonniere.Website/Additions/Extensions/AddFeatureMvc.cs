@@ -22,29 +22,32 @@ namespace Bonbonniere.Website.Additions.Extensions
                     config.Filters.Add(new AuthorizeFilter(
                         new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
                 }
+            }).AddJsonOptions(options=> 
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             })
             .AddRazorOptions(options =>
-                {
-                    // {0} - Action Name
-                    // {1} - Controller Name
-                    // {2} - Area Name
-                    // {3} - Feature Name
-                    // Replace normal view location entirely
-                    options.AreaViewLocationFormats.Clear();
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/{2}/Features/Shared/{0}.cshtml");
-                    options.AreaViewLocationFormats.Add("/Areas/Shared/{0}.cshtml");
+            {
+                // {0} - Action Name
+                // {1} - Controller Name
+                // {2} - Area Name
+                // {3} - Feature Name
+                // Replace normal view location entirely
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Features/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/Shared/{0}.cshtml");
 
-                    // replace normal view location entirely
-                    options.ViewLocationFormats.Clear();
-                    options.ViewLocationFormats.Add("/Features/{3}/{1}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/{3}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Features/Shared/Modal/{0}.cshtml");
+                // replace normal view location entirely
+                options.ViewLocationFormats.Clear();
+                options.ViewLocationFormats.Add("/Features/{3}/{1}/{0}.cshtml");
+                options.ViewLocationFormats.Add("/Features/{3}/{0}.cshtml");
+                options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
+                options.ViewLocationFormats.Add("/Features/Shared/Modal/{0}.cshtml");
 
-                    options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
-                });
+                options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
+            });
         }
     }
 }
