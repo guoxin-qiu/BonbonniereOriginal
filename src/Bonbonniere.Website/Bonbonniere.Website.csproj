@@ -30,5 +30,8 @@
     <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
     <ProjectReference Include="..\Bonbonniere.Services\Bonbonniere.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MyStaticFiles\" />
+  </ItemGroup>
 
 </Project>

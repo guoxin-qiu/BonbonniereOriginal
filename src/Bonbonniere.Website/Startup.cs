@@ -13,6 +13,8 @@ using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Bonbonniere.Website
 {
@@ -47,6 +49,8 @@ namespace Bonbonniere.Website
             services.RegisterRepositoryModule();
             services.RegisterServiceModule();
 
+            services.AddDirectoryBrowser();
+
             _services = services;
         }
 
@@ -78,7 +82,34 @@ namespace Bonbonniere.Website
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            // Serve my app-specific default file, if present.
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("mydefault.html");
+            app.UseDefaultFiles(options); // must be called before 'UseStaticFiles'
+
+            app.UseStaticFiles(new StaticFileOptions {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=800");
+                }
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(),@"MyStaticFiles")),
+                RequestPath = new PathString("/StaticFiles"),
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=600");
+                }
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(),@"wwwroot","images")),
+                RequestPath = new PathString("/MyImages")
+            });
 
             app.UseMvc(routes =>
             {
