@@ -68,8 +68,14 @@ namespace Bonbonniere.Website
                 AutomaticChallenge = true
             });
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory.WithFilter(new FilterLoggerSettings
+            {
+                { "Microsoft", LogLevel.Warning },
+                { "System", LogLevel.Warning },
+                { "Bonbonniere", LogLevel.Debug }
+            })
+            .AddConsole(Configuration.GetSection("Logging"))
+            .AddDebug();
 
             if (env.IsDevelopment() || env.IsEnvironment("Test"))
             {
