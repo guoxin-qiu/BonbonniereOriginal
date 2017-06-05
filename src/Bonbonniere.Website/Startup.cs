@@ -1,31 +1,33 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Bonbonniere.Data;
 using Bonbonniere.Data.Infrastructure;
 using Bonbonniere.Infrastructure;
-using Bonbonniere.Services;
-using Bonbonniere.Website.Additions.Extensions;
-using Bonbonniere.Data;
-using Bonbonniere.Website.Additions.Middleware;
 using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
-using Microsoft.AspNetCore.Http;
+using Bonbonniere.Services;
+using Bonbonniere.Website.Additions.Extensions;
+using Bonbonniere.Website.Additions.Middleware;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Bonbonniere.Website
 {
     public class Startup
     {
         private IServiceCollection _services;
-        private IHostingEnvironment _env;
+        private IHostingEnvironment _hostingEnvironment;
 
         public Startup(IHostingEnvironment env)
         {
-            _env = env;
+            _hostingEnvironment = env;
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -40,7 +42,7 @@ namespace Bonbonniere.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddFeatureMvc(_env);
+            services.AddFeatureMvc(_hostingEnvironment);
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
 
