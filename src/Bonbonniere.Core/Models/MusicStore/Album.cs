@@ -9,8 +9,8 @@ namespace Bonbonniere.Core.Models.MusicStore
         public int Id { get; set; }
         public string Title { get; set; }
         [Range(0.01, 100.00)]
-        [DataType(DataType.Currency)] // TODO: add validation
         public decimal Price { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public string ArtUrl { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
 

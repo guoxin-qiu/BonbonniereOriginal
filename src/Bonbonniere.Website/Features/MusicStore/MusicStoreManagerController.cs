@@ -14,14 +14,19 @@ namespace Bonbonniere.Website.Features.MusicStore
             _musicStoreService = musicStoreService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string titleSearch, string sortOrder)
         {
-            var albums = await _musicStoreService.GetListAsync();
+            ViewData["TitleSortParm"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["PriceSortParm"] = sortOrder == "price" ? "price_desc" : "price";
+            ViewData["CurrentFilter"] = titleSearch ?? "";
+
+            var albums = await _musicStoreService.GetListAsync(titleSearch, sortOrder);
             var model = albums.Select(a => new AlbumsViewModel
             {
                 AlbumArtUrl = a.ArtUrl,
                 AlbumId = a.Id,
                 AlbumPrice = a.Price,
+                AlbumReleaseDate = a.ReleaseDate,
                 AlbumTitle = a.Title
             }).ToList();
 

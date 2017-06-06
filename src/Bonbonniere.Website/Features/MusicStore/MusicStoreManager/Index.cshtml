@@ -6,28 +6,56 @@
 <h2>Albums in Music Store</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a asp-action="Create">Create New</a>
 </p>
-
-<div class="row">
-    <div class="col-md-9">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var album in Model)
-                {
-                    <tr>
-                        <td>@album.AlbumTitle</td>
-                        <td>@album.AlbumPrice</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<form asp-action="Index" method="get">
+    <div>
+        <p>
+            Find by title: <input type="text" name="titleSearch" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Index">Back to Full List</a>
+        </p>
     </div>
-</div>
-
+</form>
+@if (Model == null || Model.Count == 0)
+{
+    <p>No data.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">
+                        @Html.DisplayNameFor(model => model[0].AlbumTitle)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParm"]">
+                        @Html.DisplayNameFor(model => model[0].AlbumPrice)
+                    </a>
+                </th>
+                <th>@Html.DisplayNameFor(model => model[0].AlbumReleaseDate)</th>
+                <th>@Html.DisplayNameFor(model => model[0].AlbumArtUrl)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.AlbumTitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AlbumPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AlbumReleaseDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AlbumArtUrl)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.AlbumId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.AlbumId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

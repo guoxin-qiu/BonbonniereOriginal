@@ -1,6 +1,7 @@
 ﻿using Bonbonniere.Core.Models.MusicStore;
 using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,6 +26,27 @@ namespace Bonbonniere.Services.Implementations
         public Task<List<Album>> GetListAsync()
         {
             return _albumRepository.FetchAllAsync();
+        }
+
+        public Task<List<Album>> GetListAsync(string title, string sortOrder)
+        {
+            Action<Orderable<Album>> order = o => o.Asc(r => r.Title);
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    order = o => o.Desc(r => r.Title);
+                    break;
+                case "price":
+                    order = o => o.Asc(r => r.Price);
+                    break;
+                case "price_desc":
+                    order = o => o.Desc(r => r.Price);
+                    break;
+                default:
+                    break;
+            }
+
+            return _albumRepository.FetchOrderedAsync(t => string.IsNullOrWhiteSpace(title) || t.Title.Contains(title), order);
         }
 
         public Task<List<Genre>> GetTopGenresAsync(int top)
