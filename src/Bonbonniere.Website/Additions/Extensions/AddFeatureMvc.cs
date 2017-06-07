@@ -36,6 +36,7 @@ namespace Bonbonniere.Website.Additions.Extensions
                 options.AreaViewLocationFormats.Clear();
                 options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{1}/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Features/{3}/{1}.{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Areas/{2}/Features/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Areas/Shared/{0}.cshtml");
 
