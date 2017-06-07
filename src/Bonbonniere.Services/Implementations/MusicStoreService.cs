@@ -4,6 +4,8 @@ using Bonbonniere.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bonbonniere.Infrastructure.Paging;
+using System.Linq;
 
 namespace Bonbonniere.Services.Implementations
 {
@@ -47,6 +49,33 @@ namespace Bonbonniere.Services.Implementations
             }
 
             return _albumRepository.FetchOrderedAsync(t => string.IsNullOrWhiteSpace(title) || t.Title.Contains(title), order);
+        }
+
+        public PaginatedList<Album> GetPagedList(string title, string sortOrder, int? page, int pageSize)
+        {
+            var query = _albumRepository.FetchAllQueryable();
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                query = query.Where(t => t.Title.Contains(title));
+            }
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    query = query.OrderByDescending(t => t.Title);
+                    break;
+                case "price":
+                    query = query.OrderBy(t => t.Price);
+                    break;
+                case "price_desc":
+                    query = query.OrderByDescending(t => t.Price);
+                    break;
+                default:
+                    query = query.OrderBy(t => t.Title);
+                    break;
+            }
+
+            return PaginatedList<Album>.Create(query, page ?? 1, pageSize);
         }
 
         public Task<List<Genre>> GetTopGenresAsync(int top)

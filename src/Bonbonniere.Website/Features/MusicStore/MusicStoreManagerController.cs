@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Bonbonniere.Services.Interfaces;
+using Bonbonniere.Infrastructure.Paging;
+using System.Collections.Generic;
 
 namespace Bonbonniere.Website.Features.MusicStore
 {
@@ -14,13 +16,24 @@ namespace Bonbonniere.Website.Features.MusicStore
             _musicStoreService = musicStoreService;
         }
 
-        public async Task<IActionResult> Index(string titleSearch, string sortOrder)
+        public IActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["TitleSortParm"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewData["PriceSortParm"] = sortOrder == "price" ? "price_desc" : "price";
-            ViewData["CurrentFilter"] = titleSearch ?? "";
 
-            var albums = await _musicStoreService.GetListAsync(titleSearch, sortOrder);
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString ?? "";
+
+            var albums = _musicStoreService.GetPagedList(searchString, sortOrder, page, 3);
             var model = albums.Select(a => new AlbumsViewModel
             {
                 AlbumArtUrl = a.ArtUrl,
@@ -30,7 +43,7 @@ namespace Bonbonniere.Website.Features.MusicStore
                 AlbumTitle = a.Title
             }).ToList();
 
-            return View(model);
+            return View(new PaginatedList<AlbumsViewModel>(model, albums.TotalItems, albums.PageIndex, albums.PageSize));
         }
     }
 }

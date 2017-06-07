@@ -30,5 +30,7 @@ namespace Bonbonniere.Infrastructure.Domain
         Task<List<T>> FetchOrderedAsync(Expression<Func<T, bool>> predicate, Action<Orderable<T>> order, params Expression<Func<T, object>>[] paths);
         List<T> FetchOrdered(Expression<Func<T, bool>> predicate, Action<Orderable<T>> order, int skip, int count, params Expression<Func<T, object>>[] paths);
         Task<List<T>> FetchOrderedAsync(Expression<Func<T, bool>> predicate, Action<Orderable<T>> order, int skip, int count, params Expression<Func<T, object>>[] paths);
+
+        IQueryable<T> FetchAllQueryable(params Expression<Func<T, object>>[] paths);
     }
 }

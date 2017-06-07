@@ -51,6 +51,7 @@ namespace Bonbonniere.Website
             services.RegisterRepositoryModule();
             services.RegisterServiceModule();
 
+            services.AddHttpContextAccessor();
             services.AddDirectoryBrowser();
 
             _services = services;
@@ -118,6 +119,8 @@ namespace Bonbonniere.Website
                     Path.Combine(Directory.GetCurrentDirectory(),@"wwwroot","images")),
                 RequestPath = new PathString("/MyImages")
             });
+
+            app.UseStaticHttpContext();
 
             app.UseMvc(routes =>
             {

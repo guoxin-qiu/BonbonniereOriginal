@@ -168,7 +168,7 @@ namespace Bonbonniere.Data.Infrastructure
         }
 
         #region Private
-        private IQueryable<T> FetchAllQueryable(params Expression<Func<T, object>>[] paths)
+        public IQueryable<T> FetchAllQueryable(params Expression<Func<T, object>>[] paths)
         {
             var all = Table as IQueryable<T>;
             if (paths is null)

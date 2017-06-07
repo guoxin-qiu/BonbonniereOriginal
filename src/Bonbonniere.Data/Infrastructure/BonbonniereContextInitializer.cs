@@ -76,7 +76,12 @@ namespace Bonbonniere.Data.Infrastructure
                 var albums = new Album[]
                 {
                     new Album { Title = "First Album", Price = 9.9m, ReleaseDate = new DateTime(1999,3,5), ArtUrl = "N/A", CreatedOn = DateTime.Now },
-                    new Album { Title = "Second Album", Price = 12.2m, ReleaseDate = new DateTime(2003,9,18), ArtUrl = "N/A", CreatedOn = DateTime.Now }
+                    new Album { Title = "Second Album", Price = 12.2m, ReleaseDate = new DateTime(2003,7,18), ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Third Album", Price = 19.1m, ReleaseDate = new DateTime(1989,3,6), ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Forth Album", Price = 3.6m, ReleaseDate = new DateTime(2013,5,3), ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Fifth Album", Price = 7.8m, ReleaseDate = new DateTime(2016,6,6), ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Sixth Album", Price = 20m, ReleaseDate = new DateTime(1988,3,22), ArtUrl = "N/A", CreatedOn = DateTime.Now },
+                    new Album { Title = "Seventh Album", Price = 9.9m, ReleaseDate = new DateTime(1978,5,16), ArtUrl = "N/A", CreatedOn = DateTime.Now }
                 };
                 context.Set<Album>().AddRange(albums);
                 context.SaveChanges();
