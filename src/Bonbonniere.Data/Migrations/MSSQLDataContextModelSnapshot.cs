@@ -72,6 +72,8 @@ namespace Bonbonniere.Data.Migrations
 
                     b.Property<decimal>("Price");
 
+                    b.Property<DateTime>("ReleaseDate");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(160);

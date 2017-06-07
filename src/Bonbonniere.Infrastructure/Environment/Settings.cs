@@ -1,4 +1,4 @@
-﻿namespace Bonbonniere.Infrastructure
+﻿namespace Bonbonniere.Infrastructure.Environment
 {
     public class Settings
     {
@@ -9,7 +9,6 @@
     public enum DataProviderType
     {
         InMemory,
-        MSSQL,
-        SQLite,
+        MSSQL
     }
 }

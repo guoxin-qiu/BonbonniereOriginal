@@ -1,9 +1,8 @@
-﻿using Bonbonniere.Data.Infrastructure;
-using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure.Environment;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Bonbonniere.Data.Providers
+namespace Bonbonniere.Infrastructure.Data.Providers
 {
     public class InMemoryDataProvider : IDataProvider
     {

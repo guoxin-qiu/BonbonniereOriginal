@@ -1,8 +1,6 @@
-﻿using Bonbonniere.Infrastructure.Domain;
-
-namespace Bonbonniere.Core.Models
+﻿namespace Bonbonniere.Core.Models
 {
-    public class User : IAggregateRoot
+    public class User
     {
         public int Id { get; set; }
         public string Username { get; set; }

@@ -8,8 +8,4 @@
     <Copyright>Copyright © QYQ 2017</Copyright>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Bonbonniere.Infrastructure\Bonbonniere.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

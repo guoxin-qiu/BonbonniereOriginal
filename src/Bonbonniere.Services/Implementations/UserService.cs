@@ -1,60 +1,55 @@
 ﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Infrastructure.Domain;
 using Bonbonniere.Services.Interfaces;
 using System.Collections.Generic;
 using Bonbonniere.Services.ServiceModels;
 using System.Threading.Tasks;
+using Bonbonniere.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Bonbonniere.Services.Implementations
 {
-    public class UserService : IUserService
+    public class UserService : ServiceBase, IUserService
     {
-        private readonly IRepository<User> _userRepository;
-        private readonly IRepository<UserProfile> _userProfileRepository;
-        private readonly IUnitOfWork _uow;
-
-        public UserService(
-            IRepository<User> userRepository, 
-            IRepository<UserProfile> userProfileRepository,
-            IUnitOfWork uow)
+        public UserService(IDataProvider dataProvider) : base(dataProvider)
         {
-            _userRepository = userRepository;
-            _userProfileRepository = userProfileRepository;
-            _uow = uow;
+
         }
 
         public User GetUser(int id)
         {
-            return _userRepository.Get(t => t.Id == id, r => r.UserProfile);
+            return _context.Users.Include(t => t.UserProfile).SingleOrDefault(t => t.Id == id);
         }
 
         public User GetUser(string email)
         {
-            return _userRepository.Get(t => t.Email == email, r => r.UserProfile);
+            return _context.Users.Include(t => t.UserProfile).SingleOrDefault(t => t.Email == email);
         }
 
         public List<User> GetUsers()
         {
-            return _userRepository.FetchAll(t=>t.UserProfile);
+            return _context.Users.Include(t => t.UserProfile).ToList();
         }
 
         public void InsertUser(User user)
         {
-            _userRepository.Add(user);
-            _uow.Commit();
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         public void UpdateUser(User user)
         {
-            _userRepository.Update(user);
-            _uow.Commit();
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
 
         public void DeleteUser(int id)
         {
-            _userProfileRepository.Remove(id);
-            _userRepository.Remove(id);
-            _uow.Commit();
+            var userProfile = _context.UserProfiles.Find(id);
+            var user = _context.Users.Find(id);
+            _context.UserProfiles.Remove(userProfile);
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
 
         public Task<SignInResult> PasswordSignInAsync(string email, string password)
@@ -63,7 +58,8 @@ namespace Bonbonniere.Services.Implementations
             {
                 return Task.FromResult(SignInResult.Failed);
             }
-            var user = _userRepository.Get(t => t.Email == email && t.Password == password, u => u.UserProfile);
+            var user = _context.Users.Include(t=>t.UserProfile)
+                .FirstOrDefault(t => t.Email == email && t.Password == password);
             if(user == null)
             {
                 return Task.FromResult(SignInResult.Failed);

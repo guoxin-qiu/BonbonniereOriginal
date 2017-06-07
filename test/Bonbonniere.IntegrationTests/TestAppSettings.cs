@@ -1,4 +1,4 @@
-﻿using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure.Environment;
 using Microsoft.Extensions.Options;
 
 namespace Bonbonniere.IntegrationTests

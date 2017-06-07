@@ -1,6 +1,6 @@
-﻿using Bonbonniere.Data;
-using Bonbonniere.Data.Infrastructure;
-using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure;
+using Bonbonniere.Infrastructure.Data;
+using Bonbonniere.Infrastructure.Environment;
 using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
 using Bonbonniere.Services;
@@ -16,7 +16,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace Bonbonniere.Website
 {
@@ -46,9 +45,7 @@ namespace Bonbonniere.Website
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
 
-            services.AddSingleton<IImageService, LocalFileImageService>();
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-            services.RegisterRepositoryModule();
+            services.RegisterInfrastructureModule();
             services.RegisterServiceModule();
 
             services.AddHttpContextAccessor();
@@ -97,7 +94,8 @@ namespace Bonbonniere.Website
             options.DefaultFileNames.Add("mydefault.html");
             app.UseDefaultFiles(options); // must be called before 'UseStaticFiles'
 
-            app.UseStaticFiles(new StaticFileOptions {
+            app.UseStaticFiles(new StaticFileOptions
+            {
                 OnPrepareResponse = ctx =>
                 {
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=800");
@@ -106,7 +104,7 @@ namespace Bonbonniere.Website
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(),@"MyStaticFiles")),
+                    Path.Combine(_hostingEnvironment.ContentRootPath, @"MyStaticFiles")),
                 RequestPath = new PathString("/StaticFiles"),
                 OnPrepareResponse = ctx =>
                 {
@@ -116,7 +114,7 @@ namespace Bonbonniere.Website
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(),@"wwwroot","images")),
+                    Path.Combine(_hostingEnvironment.ContentRootPath, @"wwwroot", "images")),
                 RequestPath = new PathString("/MyImages")
             });
 

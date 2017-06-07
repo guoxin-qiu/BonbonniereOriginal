@@ -9,8 +9,6 @@ namespace Bonbonniere.Services.Interfaces
     {
         Task<List<Album>> GetListAsync();
 
-        Task<List<Album>> GetListAsync(string title, string sortOrder);
-
         Task<List<Genre>> GetTopGenresAsync(int top);
 
         PaginatedList<Album> GetPagedList(string title, string sortOrder, int? page, int pageSize);

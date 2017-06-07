@@ -85,13 +85,28 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
-                        "Price"});
+                        "Price",
+                        "Release Date",
+                        "Art Url",
+                        ""});
+            table1.AddRow(new string[] {
+                        "Fifth Album",
+                        "¥7.80",
+                        "2016-06-06",
+                        "N/A",
+                        "Edit Details Delete"});
             table1.AddRow(new string[] {
                         "First Album",
-                        "9.9"});
+                        "¥9.90",
+                        "1999-03-05",
+                        "N/A",
+                        "Edit Details Delete"});
             table1.AddRow(new string[] {
-                        "Second Album",
-                        "12.2"});
+                        "Forth Album",
+                        "¥3.60",
+                        "2013-05-03",
+                        "N/A",
+                        "Edit Details Delete"});
 #line 10
  testRunner.And("I should see grid with", ((string)(null)), table1, "And ");
 #line hidden
@@ -106,13 +121,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Album To Music Store", new string[] {
                         "ignore"});
-#line 16
-this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Given("I am on the site home page with logon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 18
- testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I am on the site home page with logon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
+ testRunner.When("I open menu \"MusicStore\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
  testRunner.And("I follow \"Create New\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -123,30 +138,42 @@ this.ScenarioSetup(scenarioInfo);
                         "Yesterday",
                         "8.99",
                         "placeholder.png"});
-#line 20
+#line 21
  testRunner.And("I fill in", ((string)(null)), table2, "And ");
-#line 23
- testRunner.And("I hit \"Create\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
- testRunner.Then("I should see page \"Create Album\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I hit \"Create\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
- testRunner.And("I should see \"Create alubum successful.\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I should see page \"Create Album\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
+ testRunner.And("I should see \"Create alubum successful.\" on page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
  testRunner.And("I should see page \"Music Store\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
-                        "Price"});
+                        "Price",
+                        "Release Date",
+                        "Art Url",
+                        ""});
+            table3.AddRow(new string[] {
+                        "Fifth Album",
+                        "¥7.80",
+                        "2016-06-06",
+                        "N/A",
+                        "Edit Details Delete"});
             table3.AddRow(new string[] {
                         "First Album",
-                        "9.9"});
+                        "¥9.90",
+                        "1999-03-05",
+                        "N/A",
+                        "Edit Details Delete"});
             table3.AddRow(new string[] {
-                        "Second Album",
-                        "12.2"});
-            table3.AddRow(new string[] {
-                        "Yesterday",
-                        "8.99"});
-#line 27
+                        "Forth Album",
+                        "¥3.60",
+                        "2013-05-03",
+                        "N/A",
+                        "Edit Details Delete"});
+#line 28
  testRunner.And("I should see grid with", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();

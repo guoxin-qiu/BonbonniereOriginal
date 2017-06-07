@@ -3,7 +3,7 @@ using Bonbonniere.Core.Models.MusicStore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Bonbonniere.Data.Infrastructure
+namespace Bonbonniere.Infrastructure.Data
 {
     public class BonbonniereContext : DbContext
     {
@@ -15,6 +15,15 @@ namespace Bonbonniere.Data.Infrastructure
             : base(options)
         {
         }
+
+        #region Db Set
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<BrainstormSession> BrainstormSessions { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Idea> Ideas { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+        #endregion Db Set
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bonbonniere.Infrastructure.Domain
+namespace Bonbonniere.Core
 {
     public class BaseEntity
     {

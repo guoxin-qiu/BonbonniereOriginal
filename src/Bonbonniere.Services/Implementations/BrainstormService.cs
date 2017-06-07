@@ -1,42 +1,39 @@
 ﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Infrastructure.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bonbonniere.Services.Interfaces;
+using Bonbonniere.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bonbonniere.Services.Implementations
 {
-    public class BrainstormService : IBrainstormService
+    public class BrainstormService : ServiceBase, IBrainstormService
     {
-        private readonly IRepository<BrainstormSession> _sessionRepository;
-        private readonly IUnitOfWork _uow;
-
-        public BrainstormService(IRepository<BrainstormSession> sessionRepository, IUnitOfWork uow)
+        public BrainstormService(IDataProvider dataProvider) : base(dataProvider)
         {
-            _sessionRepository = sessionRepository;
-            _uow = uow;
+
         }
 
         public Task AddSessionAsync(BrainstormSession session)
         {
-             _sessionRepository.Add(session);
-            return _uow.CommitAsync();
+            _context.BrainstormSessions.Add(session);
+            return _context.SaveChangesAsync();
         }
 
         public Task<BrainstormSession> GetByIdAsync(int id)
         {
-            return _sessionRepository.GetAsync(t => t.Id == id, p => p.Ideas);
+            return _context.BrainstormSessions.Include(t => t.Ideas).FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public Task<List<BrainstormSession>> GetListAsync()
         {
-            return _sessionRepository.FetchAllAsync(p => p.Ideas);
+            return _context.BrainstormSessions.Include(t => t.Ideas).ToListAsync();
         }
 
         public Task UpdateAsync(BrainstormSession session)
         {
-            _sessionRepository.Update(session);
-            return _uow.CommitAsync();
+            _context.BrainstormSessions.Update(session);
+            return _context.SaveChangesAsync();
         }
     }
 }

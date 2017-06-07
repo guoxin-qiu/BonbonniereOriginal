@@ -18,9 +18,9 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task Index_ReturnsAViewResult_WithAListOfBrainstormSessions()
         {
             // Arrange
-            var mockReop = new Mock<IBrainstormService>();
-            mockReop.Setup(repo => repo.GetListAsync()).Returns(Task.FromResult(GetTestSessions()));
-            var controller = new BrainstormSessionController(mockReop.Object);
+            var mockService = new Mock<IBrainstormService>();
+            mockService.Setup(srv => srv.GetListAsync()).Returns(Task.FromResult(GetTestSessions()));
+            var controller = new BrainstormSessionController(mockService.Object);
 
             //Act
             var result = await controller.Index();
@@ -36,8 +36,8 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task IndexPost_ReturnsViewResult_WhenModelStateIsInvalid()
         {
             // Arrange
-            var mockReop = new Mock<IBrainstormService>();
-            var controller = new BrainstormSessionController(mockReop.Object);
+            var mockService = new Mock<IBrainstormService>();
+            var controller = new BrainstormSessionController(mockService.Object);
             controller.ModelState.AddModelError("SessionName", "Required");
             var newSession = new BrainstormSessionController.NewSessionModel();
 
@@ -72,11 +72,11 @@ namespace Bonbonniere.UnitTests.Controllers
         public async Task IndexPost_ReturnsARedirectToIndexAndAddsSession_WhenModelStateIsValid()
         {
             // Arrange
-            var mockReop = new Mock<IBrainstormService>();
-            mockReop.Setup(repo => repo.AddSessionAsync(It.IsAny<BrainstormSession>()))
+            var mockService = new Mock<IBrainstormService>();
+            mockService.Setup(srv => srv.AddSessionAsync(It.IsAny<BrainstormSession>()))
                 .Returns(Task.CompletedTask)
                 .Verifiable();
-            var controller = new BrainstormSessionController(mockReop.Object);
+            var controller = new BrainstormSessionController(mockService.Object);
             var newSession = new BrainstormSessionController.NewSessionModel
             {
                 SessionName = "Test Name"
@@ -89,7 +89,7 @@ namespace Bonbonniere.UnitTests.Controllers
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Null(redirectToActionResult.ControllerName);
             Assert.Equal("Index", redirectToActionResult.ActionName);
-            mockReop.Verify();//will fail the test if the expected method was not called
+            mockService.Verify();//will fail the test if the expected method was not called
         }
 
         [Fact]
@@ -111,10 +111,10 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormService>();
-            mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
+            var mockService = new Mock<IBrainstormService>();
+            mockService.Setup(srv => srv.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult((BrainstormSession)null));
-            var controller = new BrainstormSessionController(mockRepo.Object);
+            var controller = new BrainstormSessionController(mockService.Object);
 
             //Act
             var result = await controller.Details(testSessionId);
@@ -129,10 +129,10 @@ namespace Bonbonniere.UnitTests.Controllers
         {
             //Arrange
             int testSessionId = 1;
-            var mockRepo = new Mock<IBrainstormService>();
-            mockRepo.Setup(repo => repo.GetByIdAsync(testSessionId))
+            var mockService = new Mock<IBrainstormService>();
+            mockService.Setup(srv => srv.GetByIdAsync(testSessionId))
                 .Returns(Task.FromResult(GetTestSessions().FirstOrDefault(s => s.Id == testSessionId)));
-            var controller = new BrainstormSessionController(mockRepo.Object);
+            var controller = new BrainstormSessionController(mockService.Object);
 
             //Act
             var result = await controller.Details(testSessionId);

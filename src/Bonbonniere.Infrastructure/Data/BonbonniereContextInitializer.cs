@@ -4,7 +4,7 @@ using Bonbonniere.Core.Models.WordTutor;
 using System;
 using System.Linq;
 
-namespace Bonbonniere.Data.Infrastructure
+namespace Bonbonniere.Infrastructure.Data
 {
     public static class BonbonniereContextInitializer
     {

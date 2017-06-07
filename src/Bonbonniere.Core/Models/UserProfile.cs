@@ -1,6 +1,4 @@
-﻿using Bonbonniere.Infrastructure.Domain;
-
-namespace Bonbonniere.Core.Models
+﻿namespace Bonbonniere.Core.Models
 {
     public enum Gender
     {
@@ -8,7 +6,7 @@ namespace Bonbonniere.Core.Models
         Female = 2
     }
 
-    public class UserProfile : IAggregateRoot
+    public class UserProfile
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

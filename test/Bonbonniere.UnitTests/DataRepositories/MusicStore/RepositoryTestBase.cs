@@ -1,6 +1,6 @@
-﻿using Bonbonniere.Data.Infrastructure;
-using Bonbonniere.Data.Providers;
-using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure.Data;
+using Bonbonniere.Infrastructure.Data.Providers;
+using Bonbonniere.Infrastructure.Environment;
 using Microsoft.Extensions.Options;
 using Moq;
 

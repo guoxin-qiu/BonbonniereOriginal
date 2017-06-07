@@ -1,6 +1,6 @@
-﻿using Bonbonniere.Data;
-using Bonbonniere.Data.Infrastructure;
-using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure;
+using Bonbonniere.Infrastructure.Data;
+using Bonbonniere.Infrastructure.Environment;
 using Bonbonniere.Services;
 using Bonbonniere.Website.Additions.Components;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +22,10 @@ namespace Bonbonniere.IntegrationTests
             var services = new ServiceCollection();
             //services.AddOptions();
             services.AddSingleton(typeof(IOptions<Settings>), typeof(TestAppSettings));
+
+            services.RegisterInfrastructureModule();
             services.AddSingleton(typeof(ILogger<>), typeof(TestLogger<>));
 
-            services.RegisterRepositoryModule();
             services.RegisterServiceModule();
 
             services.AddScoped(typeof(GenreMenuViewComponent));

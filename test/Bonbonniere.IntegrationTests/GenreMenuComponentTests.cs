@@ -1,5 +1,5 @@
 ﻿using Bonbonniere.Core.Models.MusicStore;
-using Bonbonniere.Data.Infrastructure;
+using Bonbonniere.Infrastructure.Data;
 using Bonbonniere.Website.Additions.Components;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.DependencyInjection;

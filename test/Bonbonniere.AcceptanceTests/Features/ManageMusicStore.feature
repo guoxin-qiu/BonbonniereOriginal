@@ -8,9 +8,10 @@ Scenario: View All Stored Music Albums
 	When I open menu "MusicStore"
 	Then I should see page "Music Store"
 	And I should see grid with
-	| Title        | Price |
-	| First Album  | 9.9   |
-	| Second Album | 12.2  |
+	| Title       | Price | Release Date | Art Url |                     |
+	| Fifth Album | ¥7.80 | 2016-06-06   | N/A     | Edit Details Delete |
+	| First Album | ¥9.90 | 1999-03-05   | N/A     | Edit Details Delete |
+	| Forth Album | ¥3.60 | 2013-05-03   | N/A     | Edit Details Delete |
 
 @ignore
 Scenario: Add Album To Music Store
@@ -25,10 +26,10 @@ Scenario: Add Album To Music Store
 	And I should see "Create alubum successful." on page
 	And I should see page "Music Store"
 	And I should see grid with
-	| Title        | Price |
-	| First Album  | 9.9   |
-	| Second Album | 12.2  |
-	| Yesterday    | 8.99  |
+	| Title       | Price | Release Date | Art Url |                     |
+	| Fifth Album | ¥7.80 | 2016-06-06   | N/A     | Edit Details Delete |
+	| First Album | ¥9.90 | 1999-03-05   | N/A     | Edit Details Delete |
+	| Forth Album | ¥3.60 | 2013-05-03   | N/A     | Edit Details Delete |
 
 
 #Scenario: View Album Details in Music Store

@@ -1,9 +1,8 @@
-﻿using System;
-using Bonbonniere.Data.Providers;
-using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure.Data.Providers;
+using Bonbonniere.Infrastructure.Environment;
 using Microsoft.Extensions.Options;
 
-namespace Bonbonniere.Data.Infrastructure
+namespace Bonbonniere.Infrastructure.Data
 {
     public class DataProviderFactory : IDataProvider
     {
@@ -22,9 +21,6 @@ namespace Bonbonniere.Data.Infrastructure
                     break;
                 case DataProviderType.MSSQL:
                     _dataProvider = new MSSQLDataProvider(settings);
-                    break;
-                case DataProviderType.SQLite:
-                    _dataProvider = new SQLiteDataProvider(settings);
                     break;
                 default:
                     _dataProvider = new InMemoryDataProvider(settings);

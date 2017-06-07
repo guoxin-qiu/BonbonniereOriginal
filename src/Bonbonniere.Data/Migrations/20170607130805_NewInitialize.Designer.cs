@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Bonbonniere.Data.Migrations;
+using Bonbonniere.Core.Models;
 
 namespace Bonbonniere.Data.Migrations
 {
     [DbContext(typeof(MSSQLDataContext))]
-    [Migration("20170518235247_AddSomething")]
-    partial class AddSomething
+    [Migration("20170607130805_NewInitialize")]
+    partial class NewInitialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,6 +72,8 @@ namespace Bonbonniere.Data.Migrations
                     b.Property<int?>("GenreId");
 
                     b.Property<decimal>("Price");
+
+                    b.Property<DateTime>("ReleaseDate");
 
                     b.Property<string>("Title")
                         .IsRequired()

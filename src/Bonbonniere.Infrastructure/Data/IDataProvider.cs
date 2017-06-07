@@ -1,6 +1,6 @@
-﻿using Bonbonniere.Infrastructure;
+﻿using Bonbonniere.Infrastructure.Environment;
 
-namespace Bonbonniere.Data.Infrastructure
+namespace Bonbonniere.Infrastructure.Data
 {
     public interface IDataProvider
     {
