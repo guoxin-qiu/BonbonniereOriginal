@@ -1,12 +1,11 @@
-﻿using Bonbonniere.Core.Models.MusicStore;
-using Bonbonniere.Infrastructure.Paging;
-using Bonbonniere.Services.Interfaces;
+﻿using Bonbonniere.Core.Paging;
+using Bonbonniere.Core.Sample.Interfaces;
+using Bonbonniere.Core.Sample.Model;
 using Bonbonniere.Website.Features.MusicStore;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Bonbonniere.UnitTests.Controllers.MusicStore

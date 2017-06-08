@@ -1,5 +1,5 @@
-﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Services.Interfaces;
+﻿using Bonbonniere.Core.App.Interfaces;
+using Bonbonniere.Core.App.Model;
 using Bonbonniere.Website.Additions.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

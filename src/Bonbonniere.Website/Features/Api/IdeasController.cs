@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Bonbonniere.Core.Models;
-using Bonbonniere.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Bonbonniere.Core.Sample.Interfaces;
+using Bonbonniere.Core.Sample.Model;
 
 namespace Bonbonniere.Website.Features.Api
 {

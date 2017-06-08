@@ -15,7 +15,9 @@ namespace Bonbonniere.IntegrationTests
     {
         protected readonly IServiceProvider _serviceProvider;
         protected readonly ITestOutputHelper _output;
-        protected readonly BonbonniereContext _dbContext;
+        protected readonly AppsContext _appsContext;
+        protected readonly SampleContext _sampleContext;
+        protected readonly EnglishClassContext _englishClassContext;
 
         public IntegrationTestBase()
         {
@@ -31,8 +33,9 @@ namespace Bonbonniere.IntegrationTests
             services.AddScoped(typeof(GenreMenuViewComponent));
 
             _serviceProvider = services.BuildServiceProvider();
-
-            _dbContext = _serviceProvider.GetRequiredService<IDataProvider>().DbContext;
+            _appsContext = _serviceProvider.GetRequiredService<Bonbonniere.Infrastructure.Data.AppsContext>();
+            _sampleContext = _serviceProvider.GetRequiredService<SampleContext>();
+            _englishClassContext = _serviceProvider.GetRequiredService<EnglishClassContext>();
         }
 
         public IntegrationTestBase(ITestOutputHelper output) : this()

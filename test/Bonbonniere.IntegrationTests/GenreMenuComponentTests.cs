@@ -1,4 +1,4 @@
-﻿using Bonbonniere.Core.Models.MusicStore;
+﻿using Bonbonniere.Core.Sample.Model;
 using Bonbonniere.Infrastructure.Data;
 using Bonbonniere.Website.Additions.Components;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
@@ -22,7 +22,7 @@ namespace Bonbonniere.IntegrationTests
         public async Task GenreMenuComponent_Returns_NineGenres()
         {
             var genreMenuComponent = _serviceProvider.GetRequiredService<GenreMenuViewComponent>();
-            PopulateData(_dbContext);
+            PopulateData(_sampleContext);
 
             //Act
             var result = await genreMenuComponent.InvokeAsync();
@@ -32,12 +32,12 @@ namespace Bonbonniere.IntegrationTests
             var viewResult = Assert.IsType<ViewViewComponentResult>(result);
             Assert.Null(viewResult.ViewName);
             var genreResult = Assert.IsType<List<string>>(viewResult.ViewData.Model);
-            Assert.Equal(7, genreResult.Count);
+            Assert.Equal(8, genreResult.Count);
         }
 
-        private static void PopulateData(BonbonniereContext context)
+        private static void PopulateData(SampleContext context)
         {
-            var genres = Enumerable.Range(1, 7).Select(n => new Genre { Id = n, Name = $"Genre - {n}" });
+            var genres = Enumerable.Range(1, 9).Select(n => new Genre { Name = $"Genre - {n}" });
 
             context.AddRange(genres);
             context.SaveChanges();

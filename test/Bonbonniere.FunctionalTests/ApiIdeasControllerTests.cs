@@ -5,9 +5,8 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xunit;
-using Bonbonniere.Website;
-using Bonbonniere.Core.Models;
 using Bonbonniere.Website.Features.Api;
+using Bonbonniere.Core.Sample.Model;
 
 namespace Bonbonniere.FunctionalTests
 {

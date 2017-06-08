@@ -32,6 +32,7 @@
     <ProjectReference Include="..\Bonbonniere.Services\Bonbonniere.Services.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\EnglishClass\Features\" />
     <Folder Include="MyStaticFiles\" />
   </ItemGroup>
 

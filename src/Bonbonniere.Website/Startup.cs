@@ -1,8 +1,6 @@
 ﻿using Bonbonniere.Infrastructure;
 using Bonbonniere.Infrastructure.Data;
 using Bonbonniere.Infrastructure.Environment;
-using Bonbonniere.Infrastructure.FileSystem;
-using Bonbonniere.Infrastructure.Logging;
 using Bonbonniere.Services;
 using Bonbonniere.Website.Additions.Extensions;
 using Bonbonniere.Website.Additions.Middleware;
@@ -55,7 +53,8 @@ namespace Bonbonniere.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IDataProvider dataProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, 
+            AppsContext bonbonniereContext, SampleContext sampleContext, EnglishClassContext englishClassContext)
         {
             app.UseRequestCulture();
 
@@ -131,7 +130,9 @@ namespace Bonbonniere.Website
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            BonbonniereContextInitializer.Initialize(dataProvider.DbContext);
+            AppsContextInitializer.Initialize(bonbonniereContext);
+            SampleContextInitializer.Initialize(sampleContext);
+            EnglishClassContextInitializer.Initialize(englishClassContext);
         }
     }
 }

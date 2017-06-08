@@ -11,8 +11,7 @@ namespace Bonbonniere.IntegrationTests
         {
             _settings = new Settings()
             {
-                DefaultConnection = string.Empty,
-                DataProvider = DataProviderType.InMemory
+                DefaultConnection = string.Empty
             };
         }
 

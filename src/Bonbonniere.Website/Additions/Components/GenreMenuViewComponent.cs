@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.Extensions.Logging;
-using Bonbonniere.Services.Interfaces;
+using Bonbonniere.Core.Sample.Interfaces;
 
 namespace Bonbonniere.Website.Additions.Components
 {

@@ -1,5 +1,4 @@
-﻿using Bonbonniere.Services.Interfaces;
-using Bonbonniere.Website.Additions.Filters;
+﻿using Bonbonniere.Core.Sample.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -45,7 +44,7 @@ namespace Bonbonniere.Website.Features.BrainstormSession
                 return View(model);
             }
 
-            await _brainstormService.AddSessionAsync(new Core.Models.BrainstormSession()
+            await _brainstormService.AddSessionAsync(new Core.Sample.Model.BrainstormSession()
             {
                 DateCreated = DateTimeOffset.Now,
                 Name = model.SessionName

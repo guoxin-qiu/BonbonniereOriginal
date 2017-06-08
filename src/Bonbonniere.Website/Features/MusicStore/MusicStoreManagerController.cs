@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Bonbonniere.Services.Interfaces;
-using Bonbonniere.Infrastructure.Paging;
-using System.Collections.Generic;
+using Bonbonniere.Core.Sample.Interfaces;
+using Bonbonniere.Core.Paging;
 
 namespace Bonbonniere.Website.Features.MusicStore
 {

@@ -94,19 +94,19 @@ this.ScenarioSetup(scenarioInfo);
                         "¥7.80",
                         "2016-06-06",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
             table1.AddRow(new string[] {
                         "First Album",
                         "¥9.90",
                         "1999-03-05",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
             table1.AddRow(new string[] {
                         "Forth Album",
                         "¥3.60",
                         "2013-05-03",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
 #line 10
  testRunner.And("I should see grid with", ((string)(null)), table1, "And ");
 #line hidden
@@ -133,10 +133,12 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
                         "Price",
+                        "Release Date",
                         "AlbumArtUrl"});
             table2.AddRow(new string[] {
                         "Yesterday",
                         "8.99",
+                        "2017-01-01",
                         "placeholder.png"});
 #line 21
  testRunner.And("I fill in", ((string)(null)), table2, "And ");
@@ -160,19 +162,25 @@ this.ScenarioSetup(scenarioInfo);
                         "¥7.80",
                         "2016-06-06",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
             table3.AddRow(new string[] {
                         "First Album",
                         "¥9.90",
                         "1999-03-05",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
             table3.AddRow(new string[] {
                         "Forth Album",
                         "¥3.60",
                         "2013-05-03",
                         "N/A",
-                        "Edit Details Delete"});
+                        "Edit #$$# Details #$$# Delete"});
+            table3.AddRow(new string[] {
+                        "Yesterday",
+                        "8.99",
+                        "2017-01-01",
+                        "placeholder.png",
+                        "Edit #$$# Details #$$# Delete"});
 #line 28
  testRunner.And("I should see grid with", ((string)(null)), table3, "And ");
 #line hidden

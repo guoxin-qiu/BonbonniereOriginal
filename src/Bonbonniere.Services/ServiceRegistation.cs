@@ -1,6 +1,4 @@
-﻿using Bonbonniere.Services.Implementations;
-using Bonbonniere.Services.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Linq;
 

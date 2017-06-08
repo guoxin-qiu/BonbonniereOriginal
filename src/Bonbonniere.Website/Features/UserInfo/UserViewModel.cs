@@ -1,4 +1,4 @@
-﻿using Bonbonniere.Core.Models;
+﻿using Bonbonniere.Core.App.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 

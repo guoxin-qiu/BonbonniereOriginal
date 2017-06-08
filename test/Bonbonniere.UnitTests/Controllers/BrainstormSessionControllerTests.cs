@@ -1,5 +1,5 @@
-﻿using Bonbonniere.Core.Models;
-using Bonbonniere.Services.Interfaces;
+﻿using Bonbonniere.Core.Sample.Interfaces;
+using Bonbonniere.Core.Sample.Model;
 using Bonbonniere.Website.Features.BrainstormSession;
 using Microsoft.AspNetCore.Mvc;
 using Moq;

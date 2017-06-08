@@ -13,6 +13,7 @@ namespace Bonbonniere.AcceptanceTests.Bindings
     [Binding]
     public class WebAppHosting
     {
+        private readonly string bar_replacer = "#$$#"; // replace '|'
         private RemoteWebDriver _webDriver;
 
         [BeforeScenario]
@@ -64,7 +65,7 @@ namespace Bonbonniere.AcceptanceTests.Bindings
             foreach (var name in table.Header)
             {
                 var curName = name;
-                var curCellData = curRow[curName];
+                var curCellData = curRow[curName].Replace(bar_replacer, "|");
                 var input = inputs.FirstOrDefault(x => x.GetAttribute("name") == curName);
                 Assert.IsNotNull(input, "Unable to locate <input> name '{0}'", name);
 
@@ -97,9 +98,9 @@ namespace Bonbonniere.AcceptanceTests.Bindings
                             x =>
                             x.GetAttribute("type") == "checkbox" &&
                             x.GetAttribute("name") == curName);
-                        foreach(var chk in chks)
+                        foreach (var chk in chks)
                         {
-                            if (chkValues.Contains(chk.GetAttribute("value")) || 
+                            if (chkValues.Contains(chk.GetAttribute("value")) ||
                                 chkValues.Contains(chk.FindElement(By.XPath("./parent::*")).Text))
                             {
                                 if (!chk.Selected)
@@ -186,7 +187,7 @@ namespace Bonbonniere.AcceptanceTests.Bindings
             foreach (var html_row in html_dataRows)
             {
                 var tds = html_row.FindElements(By.TagName("td"));
-                table.AddRow(tds.Select(p => p.Text).ToArray());
+                table.AddRow(tds.Select(p => p.Text.Replace("|", bar_replacer)).ToArray());
             }
 
             return table;
