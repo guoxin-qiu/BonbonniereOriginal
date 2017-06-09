@@ -28,8 +28,8 @@ namespace Bonbonniere.Infrastructure
         {
             return options =>
             {
-                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Bonbonniere.Data"));
-                //options.UseInMemoryDatabase();
+                //options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Bonbonniere.Data"));
+                options.UseInMemoryDatabase();
             };
         }
     }
