@@ -25,7 +25,7 @@ namespace Bonbonniere.IntegrationTests
             //services.AddOptions();
             services.AddSingleton(typeof(IOptions<Settings>), typeof(TestAppSettings));
 
-            services.RegisterInfrastructureModule();
+            services.RegisterInfrastructureModule(new TestAppSettings().Value);
             services.AddSingleton(typeof(ILogger<>), typeof(TestLogger<>));
 
             services.RegisterServiceModule();
@@ -33,7 +33,7 @@ namespace Bonbonniere.IntegrationTests
             services.AddScoped(typeof(GenreMenuViewComponent));
 
             _serviceProvider = services.BuildServiceProvider();
-            _appsContext = _serviceProvider.GetRequiredService<Bonbonniere.Infrastructure.Data.AppsContext>();
+            _appsContext = _serviceProvider.GetRequiredService<AppsContext>();
             _sampleContext = _serviceProvider.GetRequiredService<SampleContext>();
             _englishClassContext = _serviceProvider.GetRequiredService<EnglishClassContext>();
         }

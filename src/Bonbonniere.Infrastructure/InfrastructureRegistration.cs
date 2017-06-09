@@ -4,40 +4,33 @@ using Bonbonniere.Infrastructure.FileSystem;
 using Bonbonniere.Infrastructure.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Bonbonniere.Infrastructure
 {
     public static class InfrastructureRegistration
     {
-        // TODO: how to get the dbUrl from config.json?
-        public static string dbUrl = "Server=(localdb)\\ProjectsV13;Database=Bonbonniere;Trusted_Connection=True;";
-        public static void RegisterInfrastructureModule(this IServiceCollection services)
+        public static void RegisterInfrastructureModule(this IServiceCollection services, Settings settings)
         {
+            var conStr = settings.DefaultConnection;
+
             services.AddSingleton<IImageService, LocalFileImageService>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddSingleton<IClock, Clock>();
 
-            services.AddDbContext<BonbonniereContext>(options =>
-            {
-                //options.UseSqlServer(dbUrl, b => b.MigrationsAssembly("Bonbonniere.Data"));
-                options.UseInMemoryDatabase("Db_Bonbonniere");
-            });
+            services.AddDbContext<BonbonniereContext>(DbOptions(conStr));
+            services.AddDbContext<AppsContext>(DbOptions(conStr));
+            services.AddDbContext<SampleContext>(DbOptions(conStr));
+            services.AddDbContext<EnglishClassContext>(DbOptions(conStr));
+        }
 
-            services.AddDbContext<AppsContext>(options =>
+        private static Action<DbContextOptionsBuilder> DbOptions(string connectionString)
+        {
+            return options =>
             {
-                //options.UseSqlServer(dbUrl, b => b.MigrationsAssembly("Bonbonniere.Data"));
-                options.UseInMemoryDatabase("Db_Bonbonniere");
-            });
-            services.AddDbContext<SampleContext>(options =>
-            {
-                //options.UseSqlServer(dbUrl, b => b.MigrationsAssembly("Bonbonniere.Data"));
-                options.UseInMemoryDatabase("Db_Sample");
-            });
-            services.AddDbContext<EnglishClassContext>(options =>
-            {
-                //options.UseSqlServer(dbUrl, b => b.MigrationsAssembly("Bonbonniere.Data"));
-                options.UseInMemoryDatabase("Db_EnglishClass");
-            });
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Bonbonniere.Data"));
+                //options.UseInMemoryDatabase();
+            };
         }
     }
 }

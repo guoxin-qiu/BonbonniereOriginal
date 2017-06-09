@@ -16,7 +16,7 @@ namespace Bonbonniere.Infrastructure.Data
 
         private static void InitializeBrainstorm(SampleContext context)
         {
-            if (!context.Set<BrainstormSession>().Any())
+            if (!context.BrainstormSessions.Any())
             {
                 var session = new BrainstormSession
                 {
@@ -32,7 +32,7 @@ namespace Bonbonniere.Infrastructure.Data
 
                 session.AddIdea(idea);
 
-                context.Set<BrainstormSession>().Add(session);
+                context.BrainstormSessions.Add(session);
                 context.SaveChanges();
             }
         }

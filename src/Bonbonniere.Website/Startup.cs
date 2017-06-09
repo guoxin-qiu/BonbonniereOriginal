@@ -40,10 +40,8 @@ namespace Bonbonniere.Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddFeatureMvc(_hostingEnvironment);
-
             services.Configure<Settings>(Configuration.GetSection("Settings"));
-
-            services.RegisterInfrastructureModule();
+            services.RegisterInfrastructureModule(Configuration.GetSection("Settings").Get<Settings>());
             services.RegisterServiceModule();
 
             services.AddHttpContextAccessor();

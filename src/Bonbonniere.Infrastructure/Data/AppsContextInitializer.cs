@@ -10,7 +10,7 @@ namespace Bonbonniere.Infrastructure.Data
             context.Database.EnsureCreated();
 
             #region Initialize User
-            if (!context.Set<User>().Any())
+            if (!context.Users.Any())
             {
                 var users = new User[]
                 {

@@ -11,7 +11,7 @@ namespace Bonbonniere.IntegrationTests
         {
             _settings = new Settings()
             {
-                DefaultConnection = string.Empty
+                DefaultConnection = "Server=(localdb)\\ProjectsV13;Database=Bonbonniere;Trusted_Connection=True;"
             };
         }
 
